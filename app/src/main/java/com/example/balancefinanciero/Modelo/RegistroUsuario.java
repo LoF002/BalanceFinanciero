@@ -4,16 +4,16 @@ import java.util.ArrayList;
 
 public class RegistroUsuario {
 
-    ArrayList <Usuario> listaUsuarios;
+    ArrayList <Cliente> listaClientes;
 
     public RegistroUsuario() {
-        this.listaUsuarios = new ArrayList<Usuario>();
+        this.listaClientes = new ArrayList<Cliente>();
     }//Fin constructor
 
     public int buscarPosicion(String usuario){
         if(usuario!=null){
-            for (int i = 0; i < listaUsuarios.size() ; i++) {
-                if (listaUsuarios.get(i).getUsuario().equalsIgnoreCase(usuario)){
+            for (int i = 0; i < listaClientes.size() ; i++) {
+                if (listaClientes.get(i).getUsuario().equalsIgnoreCase(usuario)){
                     return i;
                 }//fin for
             }//fin for
@@ -21,10 +21,10 @@ public class RegistroUsuario {
         return -1;
     }//Fin buscarPosicion
 
-    public String agregarUsuario(Usuario usuario){
-        if(usuario!=null){
-            if(buscarPosicion(usuario.getUsuario())==-1){
-                listaUsuarios.add(usuario);
+    public String agregarUsuario(Cliente cliente){
+        if(cliente !=null){
+            if(buscarPosicion(cliente.getUsuario())==-1){
+                listaClientes.add(cliente);
                 return "Agregado correctamente";
             }//fin if
             else{
@@ -36,24 +36,24 @@ public class RegistroUsuario {
 
     public String getInformacionUsuario(int posicion){
         if(posicion!=-1){
-            return listaUsuarios.get(posicion).toString();
+            return listaClientes.get(posicion).toString();
         }//Fin if
         else{
             return "No existe";
         }//Fin else
     }//Fin metodo getInformacion
 
-    public Usuario devolverUsuario(int posicion){
+    public Cliente devolverUsuario(int posicion){
         if(posicion!=-1){
-            return listaUsuarios.get(posicion);
+            return listaClientes.get(posicion);
         }//Fin if
         else{
             return null;
         }//Fin else
     }//fin metodo devolver
 
-    public ArrayList<Usuario> devolverLista(){
-        return listaUsuarios;
+    public ArrayList<Cliente> devolverLista(){
+        return listaClientes;
     }//Fin metodo devolverlista
 
 }//Fin clase RegistroUsuario

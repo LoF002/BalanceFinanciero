@@ -9,15 +9,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.balancefinanciero.Modelo.Cliente;
 import com.example.balancefinanciero.Modelo.RegistroUsuario;
-import com.example.balancefinanciero.Modelo.Usuario;
 
 public class act_registro extends AppCompatActivity {
 
     EditText txtNombre, txtApellidos, txtUsuarioRegistro, txtContrasenaRegistro;
     Button btnRegistrar;
 
-    Usuario usuario;
+    Cliente cliente;
     RegistroUsuario registroUsuario;
 
     String mensaje="";
@@ -42,8 +42,8 @@ public class act_registro extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Ingrese todos los datos", Toast.LENGTH_SHORT).show();
                 }//Fin if
                 else{
-                    usuario = new Usuario(txtNombre.getText().toString(), txtApellidos.getText().toString(), txtUsuarioRegistro.getText().toString(), txtContrasenaRegistro.getText().toString());
-                    mensaje = registroUsuario.agregarUsuario(usuario);
+                    cliente = new Cliente(txtNombre.getText().toString(), txtApellidos.getText().toString(), txtUsuarioRegistro.getText().toString(), txtContrasenaRegistro.getText().toString());
+                    mensaje = registroUsuario.agregarUsuario(cliente);
                     Toast.makeText(getApplicationContext(), mensaje, Toast.LENGTH_SHORT).show();
                     limpiar();
                     Intent intent = new Intent(act_registro.this, act_login.class);
