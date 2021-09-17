@@ -2,11 +2,11 @@ package com.example.balancefinanciero.Modelo;
 
 import java.util.ArrayList;
 
-public class RegistroUsuario {
+public class RegistroCliente {
 
     ArrayList <Cliente> listaClientes;
 
-    public RegistroUsuario() {
+    public RegistroCliente() {
         this.listaClientes = new ArrayList<Cliente>();
     }//Fin constructor
 
@@ -21,8 +21,8 @@ public class RegistroUsuario {
         return -1;
     }//Fin buscarPosicion
 
-    public String agregarUsuario(Cliente cliente){
-        if(cliente !=null){
+    public String agregarCliente(Cliente cliente){
+        if(cliente!=null){
             if(buscarPosicion(cliente.getUsuario())==-1){
                 listaClientes.add(cliente);
                 return "Agregado correctamente";
@@ -32,7 +32,7 @@ public class RegistroUsuario {
             }//fin else
         }//Fin if
         return "Error al agregar";
-    }//Fin agregarUsuario
+    }//Fin agregarCliente
 
     public String getInformacionUsuario(int posicion){
         if(posicion!=-1){
@@ -56,4 +56,4 @@ public class RegistroUsuario {
         return listaClientes;
     }//Fin metodo devolverlista
 
-}//Fin clase RegistroUsuario
+}//Fin clase RegistroCliente
