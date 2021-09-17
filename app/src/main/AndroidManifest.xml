@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BalanceFinanciero">
         <activity
+            android:name=".act_registro"
+            android:exported="true" />
+        <activity
             android:name=".act_login"
             android:exported="true">
             <intent-filter>
