@@ -2,14 +2,26 @@ package com.example.balancefinanciero;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.example.balancefinanciero.Modelo.RegistroUsuario;
+import com.example.balancefinanciero.Modelo.Usuario;
 
 public class act_registro extends AppCompatActivity {
 
     EditText txtNombre, txtApellidos, txtUsuarioRegistro, txtContrasenaRegistro;
     Button btnRegistrar;
+
+    Usuario usuario;
+    RegistroUsuario registroUsuario;
+
+    String mensaje="";
+    int posicion=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,5 +35,30 @@ public class act_registro extends AppCompatActivity {
 
         btnRegistrar = findViewById(R.id.btnRegistrar);
 
+        btnRegistrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(txtNombre.getText().toString().isEmpty() || txtApellidos.getText().toString().isEmpty() || txtUsuarioRegistro.getText().toString().isEmpty() || txtContrasenaRegistro.getText().toString().isEmpty()){
+                    Toast.makeText(getApplicationContext(), "Ingrese todos los datos", Toast.LENGTH_SHORT).show();
+                }//Fin if
+                else{
+                    usuario = new Usuario(txtNombre.getText().toString(), txtApellidos.getText().toString(), txtUsuarioRegistro.getText().toString(), txtContrasenaRegistro.getText().toString());
+                    mensaje = registroUsuario.agregarUsuario(usuario);
+                    Toast.makeText(getApplicationContext(), mensaje, Toast.LENGTH_SHORT).show();
+                    limpiar();
+                    Intent intent = new Intent(act_registro.this, act_login.class);
+                    startActivity(intent);
+                }//Fin else
+            }//Fin onClick
+        });//Fin btnRegistrar
+
     }//Fin onCreate
+
+    public void limpiar(){
+        txtNombre.setText("");
+        txtApellidos.setText("");
+        txtUsuarioRegistro.setText("");
+        txtContrasenaRegistro.setText("");
+    }//Fin limpiar
+
 }//Fin clase
