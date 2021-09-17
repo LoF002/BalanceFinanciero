@@ -44,7 +44,9 @@ public class act_registro extends AppCompatActivity {
                 else{
                     cliente = new Cliente(txtUsuarioRegistro.getText().toString(), txtContrasenaRegistro.getText().toString(), txtNombre.getText().toString(), txtApellidos.getText().toString());
                     mensaje = registroCliente.agregarCliente(cliente);
+                    //posicion = registroCliente.buscarPosicion(txtUsuarioRegistro.getText().toString());
                     Toast.makeText(getApplicationContext(), mensaje, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), registroCliente.getInformacionUsuario(posicion), Toast.LENGTH_LONG).show();
                     limpiar();
                     Intent intent = new Intent(act_registro.this, act_login.class);
                     startActivity(intent);
