@@ -3,12 +3,12 @@ package com.example.balancefinanciero.Modelo;
 import java.time.LocalDateTime;
 
 public class Movimiento {
-    private LocalDateTime fecha;
+    private String fecha;
     private String detalle;
     private double monto;
     private boolean ingreso;
 
-    public Movimiento(LocalDateTime fecha, String detalle, double monto, boolean ingreso) {
+    public Movimiento(String fecha, String detalle, double monto, boolean ingreso) {
         this.fecha = fecha;
         this.detalle = detalle;
         this.monto = monto;
@@ -16,11 +16,11 @@ public class Movimiento {
     }
 
 
-    public LocalDateTime getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(LocalDateTime fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
