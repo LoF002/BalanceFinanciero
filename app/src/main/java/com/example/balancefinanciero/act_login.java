@@ -44,6 +44,9 @@ public class act_login extends AppCompatActivity {
                     posicion = registroCliente.buscarPosicion(txtUsuario.getText().toString());
                     mensaje = registroCliente.getInformacionUsuario(posicion);
                     Toast.makeText(getApplicationContext(),mensaje, Toast.LENGTH_LONG).show();
+                    //lanzar a la pagina principal
+                    Intent intent = new Intent(act_login.this, act_principal.class);
+                    startActivity(intent);
                 }//Fin else
             }//Fin onClick
         });//Fin btnIngresar
@@ -52,6 +55,8 @@ public class act_login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(act_login.this, act_registro.class);
+
+
                 startActivity(intent);
             }//Fin Onclick
         });//Fin btnRegistrate

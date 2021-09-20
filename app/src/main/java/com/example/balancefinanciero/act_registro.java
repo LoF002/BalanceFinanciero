@@ -18,7 +18,7 @@ public class act_registro extends AppCompatActivity {
     Button btnRegistrar;
 
     Cliente cliente;
-    RegistroCliente registroCliente = new RegistroCliente();
+    RegistroCliente registroCliente= new RegistroCliente();
 
     String mensaje="";
     int posicion=0;
@@ -35,6 +35,8 @@ public class act_registro extends AppCompatActivity {
 
         btnRegistrar = findViewById(R.id.btnRegistrar);
 
+
+
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,7 +45,7 @@ public class act_registro extends AppCompatActivity {
                 }//Fin if
                 else{
                     cliente = new Cliente(txtUsuarioRegistro.getText().toString(), txtContrasenaRegistro.getText().toString(), txtNombre.getText().toString(), txtApellidos.getText().toString());
-                    mensaje = registroCliente.agregarCliente(cliente);
+                    mensaje = registroCliente.agregarCliente(cliente);//string
                     //posicion = registroCliente.buscarPosicion(txtUsuarioRegistro.getText().toString());
                     Toast.makeText(getApplicationContext(), mensaje, Toast.LENGTH_SHORT).show();
                     //Toast.makeText(getApplicationContext(), registroCliente.getInformacionUsuario(posicion), Toast.LENGTH_LONG).show();

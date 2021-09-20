@@ -1,5 +1,6 @@
 package com.example.balancefinanciero.Modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class RegistroCliente {
@@ -7,7 +8,7 @@ public class RegistroCliente {
     ArrayList <Cliente> listaClientes;
 
     public RegistroCliente() {
-        this.listaClientes = new ArrayList<Cliente>();
+        listaClientes = new ArrayList<Cliente>();
     }//Fin constructor
 
     public int buscarPosicion(String usuario){
@@ -15,7 +16,7 @@ public class RegistroCliente {
             for (int i = 0; i < listaClientes.size() ; i++) {
                 if (listaClientes.get(i).getUsuario().equalsIgnoreCase(usuario)){
                     return i;
-                }//fin for
+                }//fin if
             }//fin for
         }//fin if
         return -1;
