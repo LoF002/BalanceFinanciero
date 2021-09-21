@@ -1,5 +1,6 @@
 package com.example.balancefinanciero.Modelo;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,10 +30,14 @@ public class AdaptadorMovimientos extends RecyclerView.Adapter<AdaptadorMovimien
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderMovimientos holder, int position) {
-        holder.descripcion.setText(listaMomivientos.get(position).getDetalle());
-        holder.monto.setText(String.valueOf(listaMomivientos.get(position).getMonto()));
-        holder.fecha.setText(listaMomivientos.get(position).getFecha());
-
+        holder.descripcion.setText("Detalle: "+listaMomivientos.get(position).getDetalle());
+        holder.monto.setText("Monto: "+String.valueOf(listaMomivientos.get(position).getMonto()));
+        holder.fecha.setText("Fecha: "+listaMomivientos.get(position).getFecha());
+        if(listaMomivientos.get(position).getMonto()<=0){
+            holder.monto.setTextColor(Color.parseColor("#DB1319"));
+        }else{
+            holder.monto.setTextColor(Color.parseColor("#218F3E"));
+        }
     }
 
     @Override
