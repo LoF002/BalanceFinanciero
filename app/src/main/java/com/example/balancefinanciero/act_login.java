@@ -53,6 +53,7 @@ public class act_login extends AppCompatActivity {
                     //lanzar a la pagina principal
                     Intent intent = new Intent(act_login.this, act_principal.class);
                     startActivity(intent);
+                    limpiar();
                 }//Fin else
             }//Fin onClick
         });//Fin btnIngresar
@@ -68,5 +69,10 @@ public class act_login extends AppCompatActivity {
         });//Fin btnRegistrate
 
     }//Fin onCreate
+
+    public void limpiar(){
+        txtUsuario.setText("");
+        txtContraseña.setText("");
+    }//Fin limpiar
 
 }//Fin clase

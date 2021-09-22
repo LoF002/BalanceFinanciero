@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/segoe_ui"
                 android:text="Usuario"
-                android:textColor="#006F98"
+                android:textColor="#006f98"
                 android:textSize="18sp" />
 
             <EditText
@@ -41,7 +41,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:fontFamily="@font/segoe_ui"
+                android:inputType="textPersonName"
+                android:textColor="#1abbef"
+                android:textSize="18sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -58,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/segoe_ui"
                 android:text="Contraseña"
-                android:textColor="#006F98"
+                android:textColor="#006f98"
                 android:textSize="18sp" />
 
             <EditText
@@ -66,7 +69,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPassword" />
+                android:fontFamily="@font/segoe_ui"
+                android:inputType="textPassword"
+                android:textColor="#1abbef"
+                android:textSize="18sp" />
 
         </LinearLayout>
 
@@ -83,8 +89,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="@color/azul"
-                android:fontFamily="@font/segoe_ui_bold"
-                android:text="Ingresar"
+                android:fontFamily="@font/segoe_ui"
+                android:text="Iniciar Sesión"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textColor="#FFFFFF"
                 android:textSize="18sp" />
@@ -113,7 +119,7 @@
                 android:layout_marginTop="3dp"
                 android:fontFamily="@font/segoe_ui"
                 android:text="Ingresar con huella"
-                android:textColor="#006F98"
+                android:textColor="#006f98"
                 android:textSize="18sp" />
         </LinearLayout>
 
@@ -121,7 +127,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="50dp"
-            android:layout_marginTop="90dp"
+            android:layout_marginTop="80dp"
             android:layout_marginRight="50dp"
             android:orientation="vertical">
 
@@ -132,7 +138,7 @@
                 android:fontFamily="@font/segoe_ui"
                 android:text="¿Eres nuevo?"
                 android:textAlignment="center"
-                android:textColor="#006F98"
+                android:textColor="#006f98"
                 android:textSize="16sp" />
 
             <Button
@@ -140,10 +146,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#311ABBEF"
-                android:fontFamily="@font/segoe_ui_bold"
-                android:text="Regístrate"
+                android:fontFamily="@font/segoe_ui"
+                android:text="Crear Cuenta"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textColor="#006F98"
+                android:textColor="#006f98"
                 android:textSize="18sp"
                 app:cornerRadius="20dp"
                 app:strokeWidth="3dp" />

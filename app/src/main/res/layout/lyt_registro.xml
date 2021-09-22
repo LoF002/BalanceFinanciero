@@ -47,7 +47,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:textColor="#1abbef"
+                android:textSize="18sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -72,7 +74,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:textColor="#1abbef"
+                android:textSize="18sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -97,7 +101,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:textColor="#1abbef"
+                android:textSize="18sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -122,7 +128,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:textColor="#1abbef"
+                android:textSize="18sp" />
 
         </LinearLayout>
 
@@ -139,7 +147,7 @@
                 android:layout_marginRight="50dp"
                 android:layout_weight="1"
                 android:backgroundTint="#006F98"
-                android:fontFamily="@font/segoe_ui_bold"
+                android:fontFamily="@font/segoe_ui"
                 android:text="Crear cuenta"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textColor="#FFFFFF"
