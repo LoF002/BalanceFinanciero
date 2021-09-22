@@ -12,6 +12,8 @@ import android.widget.Toast;
 import com.example.balancefinanciero.Modelo.Cliente;
 import com.example.balancefinanciero.Modelo.RegistroCliente;
 
+import java.util.ArrayList;
+
 public class act_login extends AppCompatActivity {
 
     EditText txtUsuario, txtContraseña;
@@ -19,6 +21,8 @@ public class act_login extends AppCompatActivity {
 
     Cliente cliente;
     RegistroCliente registroCliente = new RegistroCliente();
+
+    ArrayList<Cliente> listaClientes;
 
     String mensaje="";
     int posicion=0;
@@ -34,6 +38,8 @@ public class act_login extends AppCompatActivity {
         btnIngresar = findViewById(R.id.btnIngresar);
         btnRegistrate = findViewById(R.id.btnRegistrate);
 
+        listaClientes = getIntent().getParcelableArrayListExtra("listaClientes");
+
         btnIngresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -42,7 +48,7 @@ public class act_login extends AppCompatActivity {
                 }//Fin if
                 else{
                     posicion = registroCliente.buscarPosicion(txtUsuario.getText().toString());
-                    mensaje = registroCliente.getInformacionUsuario(posicion);
+                    mensaje = registroCliente.getInformacionCliente(posicion);
                     Toast.makeText(getApplicationContext(),mensaje, Toast.LENGTH_LONG).show();
                     //lanzar a la pagina principal
                     Intent intent = new Intent(act_login.this, act_principal.class);

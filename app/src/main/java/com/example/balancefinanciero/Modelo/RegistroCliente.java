@@ -35,7 +35,7 @@ public class RegistroCliente {
         return "Error al agregar";
     }//Fin agregarCliente
 
-    public String getInformacionUsuario(int posicion){
+    public String getInformacionCliente(int posicion){
         if(posicion!=-1){
             return listaClientes.get(posicion).toString();
         }//Fin if

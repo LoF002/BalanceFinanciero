@@ -21,9 +21,9 @@
             android:layout_marginBottom="50dp"
             android:fontFamily="@font/segoe_ui"
             android:text="Balance Financiero"
+            android:textAlignment="center"
             android:textColor="#006F98"
-            android:textSize="24sp"
-            tools:textAlignment="center" />
+            android:textSize="24sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -106,8 +106,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/segoe_ui"
                 android:text="¿Eres nuevo?"
-                android:textColor="#1ABBEF"
-                tools:textAlignment="center" />
+                android:textAlignment="center"
+                android:textColor="#1ABBEF" />
 
             <Button
                 android:id="@+id/btnRegistrate"

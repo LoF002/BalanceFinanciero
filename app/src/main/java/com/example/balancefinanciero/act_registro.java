@@ -12,6 +12,8 @@ import android.widget.Toast;
 import com.example.balancefinanciero.Modelo.Cliente;
 import com.example.balancefinanciero.Modelo.RegistroCliente;
 
+import java.util.ArrayList;
+
 public class act_registro extends AppCompatActivity {
 
     EditText txtNombre, txtApellidos, txtUsuarioRegistro, txtContrasenaRegistro;
@@ -19,6 +21,7 @@ public class act_registro extends AppCompatActivity {
 
     Cliente cliente;
     RegistroCliente registroCliente= new RegistroCliente();
+    ArrayList<Cliente> listaClientes;
 
     String mensaje="";
     int posicion=0;
@@ -35,7 +38,7 @@ public class act_registro extends AppCompatActivity {
 
         btnRegistrar = findViewById(R.id.btnRegistrar);
 
-
+        listaClientes = getIntent().getParcelableArrayListExtra("listaClientes");
 
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,10 +50,14 @@ public class act_registro extends AppCompatActivity {
                     cliente = new Cliente(txtUsuarioRegistro.getText().toString(), txtContrasenaRegistro.getText().toString(), txtNombre.getText().toString(), txtApellidos.getText().toString());
                     mensaje = registroCliente.agregarCliente(cliente);//string
                     //posicion = registroCliente.buscarPosicion(txtUsuarioRegistro.getText().toString());
+
                     Toast.makeText(getApplicationContext(), mensaje, Toast.LENGTH_SHORT).show();
-                    //Toast.makeText(getApplicationContext(), registroCliente.getInformacionUsuario(posicion), Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(), registroCliente.getInformacionCliente(posicion), Toast.LENGTH_LONG).show();
+
                     limpiar();
+
                     Intent intent = new Intent(act_registro.this, act_login.class);
+                    intent.putParcelableArrayListExtra("listaClientes", registroCliente.devolverLista());
                     startActivity(intent);
                 }//Fin else
             }//Fin onClick

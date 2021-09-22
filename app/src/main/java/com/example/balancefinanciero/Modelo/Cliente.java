@@ -1,6 +1,9 @@
 package com.example.balancefinanciero.Modelo;
 
-public class Cliente {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Cliente implements Parcelable {
 
     private String usuario, contrasena, nombres, apellidos;
 
@@ -17,6 +20,24 @@ public class Cliente {
         this.nombres = "";
         this.apellidos = "";
     }
+
+    protected Cliente(Parcel in){
+        nombres = in.readString();
+        apellidos = in.readString();
+        usuario = in.readString();
+        contrasena = in.readString();
+    }
+
+    public static final Creator<Cliente> CREATOR = new Creator<Cliente>() {
+        @Override
+        public Cliente createFromParcel(Parcel in) {
+            return new Cliente(in);
+        }
+        @Override
+        public Cliente[] newArray(int size) {
+            return new Cliente[size];
+        }
+    };
 
     public String getUsuario() {
         return usuario;
@@ -60,4 +81,16 @@ public class Cliente {
                 '}';
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(usuario);
+        parcel.writeString(contrasena);
+        parcel.writeString(nombres);
+        parcel.writeString(contrasena);
+    }
 }//Fin clase Cliente
