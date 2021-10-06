@@ -22,10 +22,10 @@ public class Cliente implements Parcelable {
     }
 
     protected Cliente(Parcel in){
-        nombres = in.readString();
-        apellidos = in.readString();
         usuario = in.readString();
         contrasena = in.readString();
+        nombres = in.readString();
+        apellidos = in.readString();
     }
 
     public static final Creator<Cliente> CREATOR = new Creator<Cliente>() {
