@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BalanceFinanciero</string>
+    <string name="app_name">Balance Financiero</string>
     <string name="txtRegitrarMov">Registrar Moviento</string>
     <string name="txtBienvenida">Bienvenido Usuario</string>
     <string name="txtBlance">Balance Actual</string>

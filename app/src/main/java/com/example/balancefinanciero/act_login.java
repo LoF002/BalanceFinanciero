@@ -58,7 +58,7 @@ public class act_login extends AppCompatActivity {
                         if (login!=false){
                             Toast.makeText(getApplicationContext(),"Bienvenido", Toast.LENGTH_LONG).show();
                             //lanzar a la pagina principal
-                            Intent intent = new Intent(act_login.this, act_principal.class);
+                            Intent intent = new Intent(act_login.this, act_loading_screen.class);
                             startActivity(intent);
                             limpiar();
                         }//Fin if
