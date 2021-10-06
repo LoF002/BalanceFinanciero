@@ -24,8 +24,9 @@ public class act_login extends AppCompatActivity {
 
     ArrayList<Cliente> listaClientes;
 
-    String mensaje="";
+    String mensaje="", usuario="", contrasena="";
     int posicion=0;
+    boolean login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,13 +48,30 @@ public class act_login extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Ingrese todos los datos", Toast.LENGTH_SHORT).show();
                 }//Fin if
                 else{
-                    posicion = registroCliente.buscarPosicion(txtUsuario.getText().toString());
-                    mensaje = registroCliente.getInformacionCliente(posicion);
-                    Toast.makeText(getApplicationContext(),mensaje, Toast.LENGTH_LONG).show();
-                    //lanzar a la pagina principal
-                    Intent intent = new Intent(act_login.this, act_principal.class);
-                    startActivity(intent);
-                    limpiar();
+                    if (listaClientes != null){
+                        usuario = txtUsuario.getText().toString();
+                        contrasena = txtContraseña.getText().toString();
+                        posicion = registroCliente.buscarUsuario(listaClientes, usuario);
+
+                        login = registroCliente.verificarContrasena(listaClientes, posicion, contrasena);
+
+                        if (login!=false){
+                            Toast.makeText(getApplicationContext(),"Bienvenido", Toast.LENGTH_LONG).show();
+                            //lanzar a la pagina principal
+                            Intent intent = new Intent(act_login.this, act_principal.class);
+                            startActivity(intent);
+                            limpiar();
+                        }//Fin if
+                        else {
+                            Toast.makeText(getApplicationContext(),"Usuario o contraseña incorrecta", Toast.LENGTH_LONG).show();
+                            limpiar();
+                        }//Fin
+                    }//Fin
+                    else {
+                        Toast.makeText(getApplicationContext(),"Usuario sin registrar", Toast.LENGTH_LONG).show();
+                        limpiar();
+                    }//
+
                 }//Fin else
             }//Fin onClick
         });//Fin btnIngresar

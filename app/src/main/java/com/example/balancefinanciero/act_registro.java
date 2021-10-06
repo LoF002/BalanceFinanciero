@@ -52,7 +52,7 @@ public class act_registro extends AppCompatActivity {
                     //posicion = registroCliente.buscarPosicion(txtUsuarioRegistro.getText().toString());
 
                     Toast.makeText(getApplicationContext(), mensaje, Toast.LENGTH_SHORT).show();
-                    //Toast.makeText(getApplicationContext(), registroCliente.getInformacionCliente(posicion), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), registroCliente.getInformacionCliente(posicion), Toast.LENGTH_LONG).show();
 
                     limpiar();
 
