@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.balancefinanciero.Modelo.Cliente;
@@ -17,14 +18,12 @@ import java.util.ArrayList;
 public class act_login extends AppCompatActivity {
 
     EditText txtUsuario, txtContraseña;
-    Button btnIngresar, btnRegistrate;
+    ImageButton btnIngresar, btnRegistrate;
 
-    Cliente cliente;
     RegistroCliente registroCliente = new RegistroCliente();
-
     ArrayList<Cliente> listaClientes;
 
-    String mensaje="", usuario="", contrasena="";
+    String usuario="", contrasena="";
     int posicion=0;
     boolean login;
 
@@ -55,7 +54,7 @@ public class act_login extends AppCompatActivity {
 
                         login = registroCliente.verificarContrasena(listaClientes, posicion, contrasena);
 
-                        if (login!=false){
+                        if(login){
                             Toast.makeText(getApplicationContext(),"Bienvenido", Toast.LENGTH_LONG).show();
                             //lanzar a la pagina principal
                             Intent intent = new Intent(act_login.this, act_loading_screen.class);
@@ -80,8 +79,6 @@ public class act_login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(act_login.this, act_registro.class);
-
-
                 startActivity(intent);
             }//Fin Onclick
         });//Fin btnRegistrate

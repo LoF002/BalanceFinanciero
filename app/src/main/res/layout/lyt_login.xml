@@ -83,17 +83,13 @@
             android:layout_marginRight="50dp"
             android:orientation="horizontal">
 
-            <Button
+            <ImageButton
                 android:id="@+id/btnIngresar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="@color/azul"
-                android:fontFamily="@font/segoe_ui"
-                android:text="Iniciar Sesión"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp" />
+                android:background="@null"
+                app:srcCompat="@drawable/grupo_58" />
         </LinearLayout>
 
         <LinearLayout
@@ -135,24 +131,19 @@
                 android:id="@+id/textView4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
                 android:fontFamily="@font/segoe_ui"
                 android:text="¿Eres nuevo?"
                 android:textAlignment="center"
                 android:textColor="#006f98"
                 android:textSize="16sp" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/btnRegistrate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#311ABBEF"
-                android:fontFamily="@font/segoe_ui"
-                android:text="Crear Cuenta"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textColor="#006f98"
-                android:textSize="18sp"
-                app:cornerRadius="20dp"
-                app:strokeWidth="3dp" />
+                android:background="@null"
+                app:srcCompat="@drawable/grupo_59" />
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

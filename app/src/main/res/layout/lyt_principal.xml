@@ -16,60 +16,178 @@
             android:id="@+id/txt_bienvenidaId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/segoe_ui"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/nunito_bold"
             android:text="@string/txtBienvenida"
-            android:textColor="@color/celeste_primario"
-            android:textSize="20sp"
             android:textAlignment="center"
-            android:layout_marginTop="20dp"/>
+            android:textColor="@color/celeste_primario"
+            android:textSize="20sp" />
 
         <LinearLayout
-            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp"
-            >
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textView13"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/segoe_ui"
-                android:text="@string/txtBlance"
-                android:layout_marginLeft="10dp"/>
-
-            <TextView
-                android:id="@+id/txt_balanceActualId"
+                android:id="@+id/textView14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/segoe_ui"
-                android:inputType="numberDecimal"
-                android:text="100000"
+                android:fontFamily="@font/nunito_bold"
+                android:text="Mostar:"
+                android:textColor="#006F98" />
+
+            <Spinner
+                android:id="@+id/spinnerDias"
+                android:layout_width="100dp"
+                android:layout_height="50dp" />
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito_bold"
+                android:text="Mes:"
+                android:textColor="#006F98" />
+
+            <Spinner
+                android:id="@+id/spinnerMeses"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp" />
+
+            <ImageButton
+                android:id="@+id/imageButton7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:background="@null"
+                app:srcCompat="@drawable/icon_material_today" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txt_totalIngresos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="45dp"
+                android:layout_marginRight="100dp"
+                android:fontFamily="@font/nunito_bold"
+                android:text="0"
+                android:textAlignment="center"
+                android:textColor="#74C757"
                 android:textSize="20sp" />
 
+            <TextView
+                android:id="@+id/txt_totalGastos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito_bold"
+                android:text="0"
+                android:textAlignment="center"
+                android:textColor="#F66969"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="55dp"
+                android:layout_marginRight="135dp"
+                android:text="Ingresos"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gastos"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerMovimiento"
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="20dp">
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp">
 
         </androidx.recyclerview.widget.RecyclerView>
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_registrarMov"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/azul"
-            android:fontFamily="@font/segoe_ui_bold"
-            android:text="@string/txtRegitrarMov"
-            android:textColor="@color/fondo"
-            android:layout_marginLeft="115dp"/>
+            android:layout_marginLeft="315dp"
+            android:layout_marginTop="10dp"
+            android:background="@null"
+            app:srcCompat="@drawable/grupo_44" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="55dp"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="35dp"
+                android:background="@null"
+                app:srcCompat="@drawable/grupo_61" />
+
+            <ImageButton
+                android:id="@+id/imageButton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="35dp"
+                android:background="@null"
+                app:srcCompat="@drawable/grupo_62" />
+
+            <ImageButton
+                android:id="@+id/imageButton4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="35dp"
+                android:background="@null"
+                app:srcCompat="@drawable/grupo_63" />
+
+            <ImageButton
+                android:id="@+id/imageButton5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="35dp"
+                android:background="@null"
+                app:srcCompat="@drawable/grupo_64" />
+
+            <ImageButton
+                android:id="@+id/imageButton6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                app:srcCompat="@drawable/grupo_66" />
+        </LinearLayout>
 
     </LinearLayout>
 

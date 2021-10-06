@@ -8,10 +8,14 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,17 +27,20 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class act_principal extends AppCompatActivity {
+public class act_principal extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     ArrayList<Movimiento> listaMovimientos;
     RecyclerView recyclerMomivientos;
-    Button registrarMovimiento;
-    TextView balanceActual;
+    ImageButton registrarMovimiento;
+    TextView ingresosTotales, gastosTotales;
+
+    Spinner spinnerDias, spinnerMeses;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lyt_principal);
 
-        balanceActual= (TextView) findViewById(R.id.txt_balanceActualId);
+        ingresosTotales = (TextView) findViewById(R.id.txt_totalIngresos);
+        gastosTotales = (TextView) findViewById(R.id.txt_totalGastos);
 
         //codigo para usar recycler personalizado
         listaMovimientos=new ArrayList<>();
@@ -44,12 +51,26 @@ public class act_principal extends AppCompatActivity {
         //fin codigo recycler
 
         //Codigo para actuallizar movimientos
-        registrarMovimiento= (Button) findViewById(R.id.btn_registrarMov);
+        registrarMovimiento= (ImageButton) findViewById(R.id.btn_registrarMov);
         registrarMovimiento.setOnClickListener((View)->{showDialog();});
 
+        //Spinner dias
+        spinnerDias = findViewById(R.id.spinnerDias);
+        ArrayAdapter<CharSequence> adapterSpinnerDias = ArrayAdapter.createFromResource(this,
+                R.array.dias, android.R.layout.simple_spinner_item);
+        adapterSpinnerDias.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerDias.setAdapter(adapterSpinnerDias);
+        spinnerDias.setOnItemSelectedListener(this);
 
+        //Spinner meses
+        spinnerMeses = findViewById(R.id.spinnerMeses);
+        ArrayAdapter<CharSequence> adapterSpinnerMeses = ArrayAdapter.createFromResource(this,
+                R.array.meses, android.R.layout.simple_spinner_item);
+        adapterSpinnerMeses.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerMeses.setAdapter(adapterSpinnerMeses);
+        spinnerMeses.setOnItemSelectedListener(this);
 
-    }
+    }//Fin onCreate
 
     private void showDialog() {
         final Dialog dialog = new Dialog(act_principal.this);
@@ -128,8 +149,24 @@ public class act_principal extends AppCompatActivity {
     }
 
     private void actualizarBalance(double monto){
-        double montoActual=Double.parseDouble(balanceActual.getText().toString());
-        balanceActual.setText(String.valueOf(montoActual+monto));
+        double ingresosActuales = Double.parseDouble(ingresosTotales.getText().toString());
+        double gastosActuales = Double.parseDouble(gastosTotales.getText().toString());
+
+        if(monto<0){
+            gastosTotales.setText(String.valueOf(gastosActuales+monto));
+        }//Fin else
+        else{
+            ingresosTotales.setText(String.valueOf(ingresosActuales+monto));
+        }//Fin else
+    }//Fin metodo
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
     }
 
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
 }

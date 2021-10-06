@@ -91,6 +91,6 @@ public class Cliente implements Parcelable {
         parcel.writeString(usuario);
         parcel.writeString(contrasena);
         parcel.writeString(nombres);
-        parcel.writeString(contrasena);
+        parcel.writeString(apellidos);
     }
 }//Fin clase Cliente

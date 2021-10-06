@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.balancefinanciero.Modelo.Cliente;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 public class act_registro extends AppCompatActivity {
 
     EditText txtNombre, txtApellidos, txtUsuarioRegistro, txtContrasenaRegistro;
-    Button btnRegistrar;
+    ImageButton btnRegistrar;
 
     Cliente cliente;
     RegistroCliente registroCliente= new RegistroCliente();
@@ -47,9 +48,12 @@ public class act_registro extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Ingrese todos los datos", Toast.LENGTH_SHORT).show();
                 }//Fin if
                 else{
-                    cliente = new Cliente(txtUsuarioRegistro.getText().toString(), txtContrasenaRegistro.getText().toString(), txtNombre.getText().toString(), txtApellidos.getText().toString());
+                    String usuario=txtUsuarioRegistro.getText().toString();
+                    String contrasena=txtContrasenaRegistro.getText().toString();
+                    String nombre=txtNombre.getText().toString();
+                    String apellidos=txtApellidos.getText().toString();
+                    cliente = new Cliente(usuario,contrasena, nombre, apellidos);
                     mensaje = registroCliente.agregarCliente(cliente);//string
-                    //posicion = registroCliente.buscarPosicion(txtUsuarioRegistro.getText().toString());
 
                     Toast.makeText(getApplicationContext(), mensaje, Toast.LENGTH_SHORT).show();
                     Toast.makeText(getApplicationContext(), registroCliente.getInformacionCliente(posicion), Toast.LENGTH_LONG).show();

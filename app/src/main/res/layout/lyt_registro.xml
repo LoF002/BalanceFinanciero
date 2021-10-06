@@ -139,20 +139,13 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <Button
+            <ImageButton
                 android:id="@+id/btnRegistrar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
                 android:layout_weight="1"
-                android:backgroundTint="#006F98"
-                android:fontFamily="@font/segoe_ui"
-                android:text="Crear cuenta"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textColor="#FFFFFF"
-                android:textSize="18dp"
-                app:cornerRadius="20dp" />
+                android:background="@null"
+                app:srcCompat="@drawable/grupo_20" />
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
