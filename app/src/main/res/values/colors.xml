@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="azul">#006F98</color>
+    <color name="celeste_primario">#1ABBEF</color>
+    <color name="celeste_secundario">#7FD2FD</color>
+    <color name="fondo">#E9EBED</color>
+    <color name="blanco">#FFFFFF</color>
+
+
+</resources>

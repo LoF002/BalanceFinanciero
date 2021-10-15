@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Juan/Documents/GitHub/BalanceFinanciero/app/src/main/res/layout-ldltr/item_list_mov.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Juan/Documents/GitHub/BalanceFinanciero/app/src/main/res/layout/item_list_mov.xml" value="0.22248803827751196" />
+        <entry key="..\:/Users/Juan/Documents/GitHub/BalanceFinanciero/app/src/main/res/layout/item_list_moviento.xml" value="0.8866279069767442" />
+        <entry key="..\:/Users/Juan/Documents/GitHub/BalanceFinanciero/app/src/main/res/layout/lyt_loading_screen.xml" value="0.25" />
+        <entry key="..\:/Users/Juan/Documents/GitHub/BalanceFinanciero/app/src/main/res/layout/lyt_login.xml" value="0.33" />
+        <entry key="..\:/Users/Juan/Documents/GitHub/BalanceFinanciero/app/src/main/res/layout/lyt_principal.xml" value="0.25" />
+        <entry key="..\:/Users/Juan/Documents/GitHub/BalanceFinanciero/app/src/main/res/layout/lyt_registro.xml" value="0.2015625" />
+        <entry key="..\:/Users/Juan/Documents/GitHub/BalanceFinanciero/app/src/main/res/layout/transaction_dialog.xml" value="0.25" />
+        <entry key="..\:/Users/LoF/Documents/DesarrolloParaDispositivosMoviles/BalanceFinanciero/app/src/main/res/layout/activity_main.xml" value="0.371875" />
+        <entry key="..\:/Users/LoF/Documents/DesarrolloParaDispositivosMoviles/BalanceFinanciero/app/src/main/res/layout/item_list_mov.xml" value="0.371875" />
+        <entry key="..\:/Users/LoF/Documents/DesarrolloParaDispositivosMoviles/BalanceFinanciero/app/src/main/res/layout/lyt_login.xml" value="0.371875" />
+        <entry key="..\:/Users/LoF/Documents/DesarrolloParaDispositivosMoviles/BalanceFinanciero/app/src/main/res/layout/lyt_principal.xml" value="0.5552099533437014" />
+        <entry key="..\:/Users/LoF/Documents/DesarrolloParaDispositivosMoviles/BalanceFinanciero/app/src/main/res/layout/lyt_registro.xml" value="0.371875" />
+        <entry key="..\:/Users/LoF/Documents/DesarrolloParaDispositivosMoviles/BalanceFinanciero/app/src/main/res/layout/transaction_dialog.xml" value="0.371875" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
