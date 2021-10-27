@@ -30,17 +30,21 @@ public class act_login extends AppCompatActivity {
     EditText txtCorreo, txtContrasenia;
     ImageButton btnIngresar, btnRegistrate;
 
+    //Referencias a la clase cliente y registro cliente (Obsoletas por firebase)
     RegistroCliente registroCliente = new RegistroCliente();
     ArrayList<Cliente> listaClientes;
 
+    //Variables globales
     String usuario="", contrasena="";
     int posicion=0;
     boolean login;
 
-    //firebase
+    //Referencias a Firebase
     DatabaseReference databaseReference;
     FirebaseAuth firebaseAuth;
     FirebaseUser user;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,8 +71,8 @@ public class act_login extends AppCompatActivity {
                 if(validar()){
                     firebaseAuth.signInWithEmailAndPassword(txtCorreo.getText().toString(),txtContrasenia.getText().toString())
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                //Comparara el usuario ingresado con el de la base de datos y si es valido realiza el intent
                                 @Override
-
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()){
                                         user=firebaseAuth.getCurrentUser();
@@ -80,21 +84,23 @@ public class act_login extends AppCompatActivity {
 
                                         try {
                                             throw task.getException();
-                                        }
+                                        }//Fin del try
                                         catch(Exception e) {
                                             Toast.makeText(act_login.this, e.getMessage(), Toast.LENGTH_LONG).show();
-                                        }
-                                    }
+                                        }//fin del cath
+                                    }//Fin del else
 
-                                }
+                                }//Fin del override
 
                             }
 
                     );
-                }
+                }//fin del if
 
             }//Fin onClick
         });//Fin btnIngresar
+
+        //Realiza el cambio de activity al clicar el boton
         btnRegistrate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -102,8 +108,9 @@ public class act_login extends AppCompatActivity {
                 startActivity(intent);
             }//Fin Onclick
         });//Fin btnRegistrate
-    }
+    }//fin de btnClickListener
 
+    //Validacion de espacios
     private boolean validar() {
         String correo=txtCorreo.getText().toString();
         String password=txtContrasenia.getText().toString();
@@ -115,18 +122,20 @@ public class act_login extends AppCompatActivity {
             return false;
         }else{
             return true;
-        }
-    }
+        }//fin del else
+    }//Fin boolean
 
+    //Limpia los espacios de texto
     public void limpiar(){
         txtCorreo.setText("");
         txtContrasenia.setText("");
     }//Fin limpiar
 
+    //Inicializa la BD diciendole cual usar y preparando el Autenticator
     private void inicializarDB() {
         FirebaseApp.initializeApp(this);
         firebaseAuth=FirebaseAuth.getInstance();
         databaseReference= FirebaseDatabase.getInstance().getReference();
-    }
+    }//fin de inicializarDB
 
 }//Fin clase
