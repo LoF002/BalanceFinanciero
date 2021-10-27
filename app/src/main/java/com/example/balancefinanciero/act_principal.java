@@ -1,10 +1,12 @@
 package com.example.balancefinanciero;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -20,12 +22,23 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.balancefinanciero.Modelo.AdaptadorMovimientos;
+import com.example.balancefinanciero.Modelo.Cuenta;
 import com.example.balancefinanciero.Modelo.Movimiento;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthEmailException;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.UUID;
 
 public class act_principal extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     ArrayList<Movimiento> listaMovimientos;
@@ -34,11 +47,16 @@ public class act_principal extends AppCompatActivity implements AdapterView.OnIt
     TextView ingresosTotales, gastosTotales;
 
     Spinner spinnerDias, spinnerMeses;
+
+    //firebase
+    DatabaseReference databaseReference;
+    FirebaseAuth firebaseAuth;
+    FirebaseUser user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lyt_principal);
-
+        inicializarDatabase();
         ingresosTotales = (TextView) findViewById(R.id.txt_totalIngresos);
         gastosTotales = (TextView) findViewById(R.id.txt_totalGastos);
 
@@ -69,8 +87,42 @@ public class act_principal extends AppCompatActivity implements AdapterView.OnIt
         adapterSpinnerMeses.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerMeses.setAdapter(adapterSpinnerMeses);
         spinnerMeses.setOnItemSelectedListener(this);
+        pruebaDatos();
+
 
     }//Fin onCreate
+
+    private void inicializarDatabase() {
+        FirebaseApp.initializeApp(this);
+        firebaseAuth=FirebaseAuth.getInstance();
+        databaseReference= FirebaseDatabase.getInstance().getReference();
+    }
+    public void pruebaDatos(){
+        user=firebaseAuth.getCurrentUser();
+        Cuenta nuevaCuenta=new Cuenta(UUID.randomUUID().toString(),user.getUid(),"BCR","Cuenta bancaria",true);
+        Movimiento nuevoMov=new Movimiento("10-15-2021","Ropa", 20000, false);
+        ArrayList<Movimiento> listaPrueba=new ArrayList<>();
+        listaPrueba.add(nuevoMov);
+        nuevaCuenta.setListaMovientos(listaPrueba);
+        databaseReference.child("Cuenta").child(nuevaCuenta.getIdCuenta()).setValue(nuevaCuenta)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(act_principal.this, "Cuenta agregada a: "+user.getDisplayName(), Toast.LENGTH_SHORT).show();
+
+                        }else{
+                            try {
+                                throw task.getException();
+                            } catch(Exception e) {
+                                Toast.makeText(act_principal.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    }
+                }
+
+        );
+    }
 
     private void showDialog() {
         final Dialog dialog = new Dialog(act_principal.this);

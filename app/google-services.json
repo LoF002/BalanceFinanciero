@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "829198205206",
+    "project_id": "testbalancefinanciero",
+    "storage_bucket": "testbalancefinanciero.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:829198205206:android:9a55612351d6c8b67e5037",
+        "android_client_info": {
+          "package_name": "com.example.balancefinanciero"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "829198205206-puobqvlj0tdpgk7uctoehdccgd34md5l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.balancefinanciero",
+            "certificate_hash": "15bd6cedf163a3b1d36ce5e4c5eb4f52f5d5a091"
+          }
+        },
+        {
+          "client_id": "829198205206-00cvfp45k8r90effs310m8n4h37ibjp9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCY-P43YWUjpit1s_6U3H0hSV8cDh78Vv8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "829198205206-00cvfp45k8r90effs310m8n4h37ibjp9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
