@@ -90,9 +90,9 @@ public class act_registro extends AppCompatActivity {
                                                             limpiar();
                                                             Intent intent = new Intent(act_registro.this, act_login.class);
                                                             startActivity(intent);
-                                                        }
-                                                    }
-                                                });
+                                                        }//Fin if
+                                                    }//Fin onComplete
+                                                });//Fin listener
 
 
 
@@ -137,7 +137,6 @@ public class act_registro extends AppCompatActivity {
         }
 
     }
-
 
     public void limpiar(){
         txtNombre.setText("");
