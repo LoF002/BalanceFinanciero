@@ -41,8 +41,11 @@ import java.util.Calendar;
 import java.util.UUID;
 
 public class act_principal extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+
     ArrayList<Movimiento> listaMovimientos;
+
     RecyclerView recyclerMomivientos;
+
     ImageButton registrarMovimiento;
     TextView ingresosTotales, gastosTotales;
 
