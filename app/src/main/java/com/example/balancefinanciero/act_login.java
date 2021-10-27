@@ -30,13 +30,6 @@ public class act_login extends AppCompatActivity {
     EditText txtCorreo, txtContrasenia;
     ImageButton btnIngresar, btnRegistrate;
 
-    RegistroCliente registroCliente = new RegistroCliente();
-    ArrayList<Cliente> listaClientes;
-
-    String usuario="", contrasena="";
-    int posicion=0;
-    boolean login;
-
     //firebase
     DatabaseReference databaseReference;
     FirebaseAuth firebaseAuth;
@@ -51,8 +44,7 @@ public class act_login extends AppCompatActivity {
 
         btnIngresar = findViewById(R.id.btnIngresar);
         btnRegistrate = findViewById(R.id.btnRegistrate);
-
-        listaClientes = getIntent().getParcelableArrayListExtra("listaClientes");
+        
         btnClickListener();
 
 
