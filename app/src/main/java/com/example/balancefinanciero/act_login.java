@@ -56,7 +56,6 @@ public class act_login extends AppCompatActivity {
         btnIngresar = findViewById(R.id.btnIngresar);
         btnRegistrate = findViewById(R.id.btnRegistrate);
 
-        listaClientes = getIntent().getParcelableArrayListExtra("listaClientes");
         btnClickListener();
 
 
@@ -123,7 +122,7 @@ public class act_login extends AppCompatActivity {
         }else{
             return true;
         }//fin del else
-    }//Fin boolean
+    }//Fin metodo validar
 
     //Limpia los espacios de texto
     public void limpiar(){
@@ -136,6 +135,6 @@ public class act_login extends AppCompatActivity {
         FirebaseApp.initializeApp(this);
         firebaseAuth=FirebaseAuth.getInstance();
         databaseReference= FirebaseDatabase.getInstance().getReference();
-    }//fin de inicializarDB
+    }//Fin metodo inicializarDB
 
 }//Fin clase

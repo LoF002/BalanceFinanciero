@@ -44,19 +44,23 @@ public class act_registro extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lyt_registro);
         inicializarDB();
+
         txtNombre = findViewById(R.id.txtNombre);
         txtApellidos = findViewById(R.id.txtApellidos);
         txtCorreoRegistro = findViewById(R.id.txtUsuarioRegistro);
         txtContrasenaRegistro = findViewById(R.id.txtContrasenaRegistro);
         btnRegistrar = findViewById(R.id.btnRegistrar);
-        registro();//llama al onclick listener
+
+        //Llama al onclick listener encargado de registrar un cliente
+        registro();
 
     }//Fin onCreate
+
     private void inicializarDB() {
         FirebaseApp.initializeApp(this);
         firebaseAuth=FirebaseAuth.getInstance();
         databaseReference=FirebaseDatabase.getInstance().getReference();
-    }
+    }//Fin metodo
 
 
     public void registro(){
@@ -86,9 +90,9 @@ public class act_registro extends AppCompatActivity {
                                                             limpiar();
                                                             Intent intent = new Intent(act_registro.this, act_login.class);
                                                             startActivity(intent);
-                                                        }
-                                                    }
-                                                });
+                                                        }//Fin if
+                                                    }//Fin onComplete
+                                                });//Fin listener
 
 
 
@@ -133,7 +137,6 @@ public class act_registro extends AppCompatActivity {
         }
 
     }
-
 
     public void limpiar(){
         txtNombre.setText("");

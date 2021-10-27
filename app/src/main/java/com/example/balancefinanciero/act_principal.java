@@ -46,6 +46,8 @@ public class act_principal extends AppCompatActivity implements AdapterView.OnIt
     ImageButton registrarMovimiento;
     TextView ingresosTotales, gastosTotales;
 
+    ImageButton btn_vistaCuentas;
+
     Spinner spinnerDias, spinnerMeses;
 
     //firebase
@@ -89,6 +91,15 @@ public class act_principal extends AppCompatActivity implements AdapterView.OnIt
         spinnerMeses.setOnItemSelectedListener(this);
         pruebaDatos();
 
+        btn_vistaCuentas = findViewById(R.id.btn_vistaCuentas);
+
+        btn_vistaCuentas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(act_principal.this, act_cuenta.class);
+                startActivity(intent);
+            }
+        });
 
     }//Fin onCreate
 

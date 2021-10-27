@@ -41,7 +41,7 @@ public class Cliente implements Parcelable {
 
     public String getUsuario() {
         return usuario;
-    }
+    }//Fin get
 
     public void setUsuario(String usuario) {
         this.usuario = usuario;

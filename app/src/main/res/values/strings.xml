@@ -3,6 +3,7 @@
     <string name="txtRegitrarMov">+</string>
     <string name="txtBienvenida">Registro</string>
     <string name="txtBlance">Balance Actual</string>
+    <string name="txtCuenta">Cuentas</string>
 
     <string-array name="dias">
         <item>Día</item>
