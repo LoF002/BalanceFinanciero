@@ -29,21 +29,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 
 public class act_registro extends AppCompatActivity {
-    //variables firebase
 
+    //variables firebase
     DatabaseReference databaseReference;
     FirebaseAuth firebaseAuth;
     FirebaseUser user;
 
+    //
     EditText txtNombre, txtApellidos, txtCorreoRegistro, txtContrasenaRegistro;
     ImageButton btnRegistrar;
-
-    Cliente cliente;
-    RegistroCliente registroCliente= new RegistroCliente();
-    ArrayList<Cliente> listaClientes;
-
-    String mensaje="";
-    int posicion=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +50,6 @@ public class act_registro extends AppCompatActivity {
         txtContrasenaRegistro = findViewById(R.id.txtContrasenaRegistro);
         btnRegistrar = findViewById(R.id.btnRegistrar);
         registro();//llama al onclick listener
-        listaClientes = getIntent().getParcelableArrayListExtra("listaClientes");
 
     }//Fin onCreate
     private void inicializarDB() {
