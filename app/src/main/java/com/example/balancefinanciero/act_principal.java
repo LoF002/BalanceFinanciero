@@ -107,9 +107,8 @@ public class act_principal extends AppCompatActivity implements AdapterView.OnIt
         FirebaseApp.initializeApp(this);
         firebaseAuth=FirebaseAuth.getInstance();
         databaseReference= FirebaseDatabase.getInstance().getReference();
-    }
-
-    public void pruebaDatos(){
+    }//Fin de inicializarDatabase
+    public void pruebaDatos(){//Prueba a registrar un movimineto en la BD segun el usuario que haya iniciado sesion
         user=firebaseAuth.getCurrentUser();
         Cuenta nuevaCuenta=new Cuenta(UUID.randomUUID().toString(),user.getUid(),"BCR","Cuenta bancaria",true);
         Movimiento nuevoMov=new Movimiento("10-15-2021","Ropa", 20000, false);
@@ -128,13 +127,13 @@ public class act_principal extends AppCompatActivity implements AdapterView.OnIt
                                 throw task.getException();
                             } catch(Exception e) {
                                 Toast.makeText(act_principal.this, e.getMessage(), Toast.LENGTH_LONG).show();
-                            }
-                        }
-                    }
+                            }//Fin del catch
+                        }//fin del else
+                    }//Fin del onComplete
                 }
 
         );
-    }
+    }// fin de pruebaDatos
 
     private void showDialog() {
         final Dialog dialog = new Dialog(act_principal.this);
@@ -206,12 +205,13 @@ public class act_principal extends AppCompatActivity implements AdapterView.OnIt
         });
 
         dialog.show();
-    }
-
+    }//Fin del dialog
+    //Registra los movimientos de dinero y sus datos
     private void llenarMovientos(Movimiento movimiento) {
         listaMovimientos.add(movimiento);
     }
 
+    //Actualiza el monto actual de la cuenta
     private void actualizarBalance(double monto){
         double ingresosActuales = Double.parseDouble(ingresosTotales.getText().toString());
         double gastosActuales = Double.parseDouble(gastosTotales.getText().toString());

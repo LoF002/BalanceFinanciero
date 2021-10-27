@@ -19,7 +19,7 @@ int i=0;
         pb_carga=findViewById(R.id.progressBar_id);
         cargarPantalla();
     }
-
+    //Crea un hilo para la panatalla de carga
     private void cargarPantalla() {
 
         Thread hilo=new Thread(new Runnable() {
