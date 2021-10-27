@@ -44,7 +44,7 @@ public class act_login extends AppCompatActivity {
 
         btnIngresar = findViewById(R.id.btnIngresar);
         btnRegistrate = findViewById(R.id.btnRegistrate);
-        
+
         btnClickListener();
 
 
@@ -87,6 +87,7 @@ public class act_login extends AppCompatActivity {
 
             }//Fin onClick
         });//Fin btnIngresar
+
         btnRegistrate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -94,7 +95,7 @@ public class act_login extends AppCompatActivity {
                 startActivity(intent);
             }//Fin Onclick
         });//Fin btnRegistrate
-    }
+    }//Fin metodo
 
     private boolean validar() {
         String correo=txtCorreo.getText().toString();
@@ -108,7 +109,7 @@ public class act_login extends AppCompatActivity {
         }else{
             return true;
         }
-    }
+    }//Fin metodo validar
 
     public void limpiar(){
         txtCorreo.setText("");
@@ -119,6 +120,6 @@ public class act_login extends AppCompatActivity {
         FirebaseApp.initializeApp(this);
         firebaseAuth=FirebaseAuth.getInstance();
         databaseReference= FirebaseDatabase.getInstance().getReference();
-    }
+    }//Fin metodo inicializarDB
 
 }//Fin clase
