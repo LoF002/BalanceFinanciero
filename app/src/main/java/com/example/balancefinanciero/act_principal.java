@@ -98,8 +98,8 @@ public class act_principal extends AppCompatActivity implements AdapterView.OnIt
             public void onClick(View v) {
                 Intent intent = new Intent(act_principal.this, act_cuenta.class);
                 startActivity(intent);
-            }
-        });
+            }//Fin onClick
+        });//Fin btn_vistaCuentas
 
     }//Fin onCreate
 
@@ -194,7 +194,7 @@ public class act_principal extends AppCompatActivity implements AdapterView.OnIt
                 }else{
                     Toast.makeText(getApplicationContext(),"Faltan datos", Toast.LENGTH_LONG).show();
                 }
-            }
+            }//Fin del onClick
         });
         cancelar.setOnClickListener(new View.OnClickListener() {
             @Override

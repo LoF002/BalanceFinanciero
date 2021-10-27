@@ -24,7 +24,7 @@ public class act_cuenta extends AppCompatActivity {
                 Intent intent = new Intent(act_cuenta.this, act_principal.class);
                 startActivity(intent);
             }
-        });
+        });//Fin de btn_vistaRegistro
 
-    }
-}
+    }//Fin del onCreate
+}//Fin de la clase

@@ -42,10 +42,10 @@ int i=0;
                         startActivity(intent);
                     }
                     i++;
-                }
-            }
+                }//Fin del While
+            }//Fin del metodo run
         });
         hilo.start();//ejecuta el hilo
-    }
+    }//Fin de metodo cargarPantalla
 
-}
+}//Fin de la clase
