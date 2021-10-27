@@ -35,7 +35,7 @@ public class act_registro extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     FirebaseUser user;
 
-    //
+    //Variables de interfaz grafica
     EditText txtNombre, txtApellidos, txtCorreoRegistro, txtContrasenaRegistro;
     ImageButton btnRegistrar;
 
@@ -56,6 +56,7 @@ public class act_registro extends AppCompatActivity {
 
     }//Fin onCreate
 
+    //Inicia e instancia la base de datos
     private void inicializarDB() {
         FirebaseApp.initializeApp(this);
         firebaseAuth=FirebaseAuth.getInstance();
@@ -63,11 +64,13 @@ public class act_registro extends AppCompatActivity {
     }//Fin metodo
 
 
+    //Registra el usuario
     public void registro(){
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                //Llama al metodo validar
                 if(validar()){
                     firebaseAuth.createUserWithEmailAndPassword(txtCorreoRegistro.getText().toString(),txtContrasenaRegistro.getText().toString())
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -95,7 +98,7 @@ public class act_registro extends AppCompatActivity {
                                                 });//Fin listener
 
 
-
+                                    //Levanta la aplicación en caso de error
                                     }else{
 
                                         try {
@@ -104,17 +107,21 @@ public class act_registro extends AppCompatActivity {
                                         catch(Exception e) {
                                             Toast.makeText(act_registro.this, e.getMessage(), Toast.LENGTH_LONG).show();
                                         }
-                                    }
+                                    }//Fin del else
 
-                                }
+                                }//Fin de onComplete
 
-                            }
-                    );
-                }
+                            }//Fin de addOnComplete Listener
+                    );//Cierre de addOnCompleteListener
+
+                }//Fin de if para validar
 
             }//Fin onClick
         });//Fin btnRegistrar
-    }
+
+    }//Fin de metodo Registro
+
+    //Verifica la información
     private boolean validar() {
         String nombre=txtNombre.getText().toString();
         String apellidos=txtApellidos.getText().toString();
@@ -136,8 +143,9 @@ public class act_registro extends AppCompatActivity {
             return true;
         }
 
-    }
+    }//Fin de metodo validar
 
+    //Limpia los espacios de texto
     public void limpiar(){
         txtNombre.setText("");
         txtApellidos.setText("");
