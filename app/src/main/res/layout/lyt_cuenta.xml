@@ -34,7 +34,7 @@
         </androidx.recyclerview.widget.RecyclerView>
 
         <ImageButton
-            android:id="@+id/btn_registrarMov2"
+            android:id="@+id/btn_registrarCuenta"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="315dp"

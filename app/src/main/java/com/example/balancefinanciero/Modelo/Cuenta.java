@@ -5,14 +5,16 @@ import java.util.ArrayList;
 public class Cuenta {
     String idCuenta,idUsuario, nombre, tipo;
     boolean esEncolones;
+    double monto;
     ArrayList<Movimiento> listaMovientos;
 
-    public Cuenta(String idCuenta, String idUsuario, String nombre, String tipo, boolean esEncolones) {
+    public Cuenta(String idCuenta, String idUsuario, String nombre, String tipo, boolean esEncolones, double monto) {
         this.idCuenta = idCuenta;
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.tipo = tipo;
         this.esEncolones = esEncolones;
+        this.monto = monto;
     }
 
     public Cuenta() {
@@ -20,6 +22,15 @@ public class Cuenta {
         this.idUsuario = "";
         this.nombre = "";
         this.tipo = "";
+        this.monto = 0;
+    }
+
+    public double getMonto() {
+        return monto;
+    }
+
+    public void setMonto(double monto) {
+        this.monto = monto;
     }
 
     public String getIdCuenta() {

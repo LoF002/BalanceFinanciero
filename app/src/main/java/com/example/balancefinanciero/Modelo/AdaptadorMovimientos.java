@@ -15,6 +15,7 @@ import com.example.balancefinanciero.R;
 import java.util.ArrayList;
 
 public class AdaptadorMovimientos extends RecyclerView.Adapter<AdaptadorMovimientos.ViewHolderMovimientos> {
+
     ArrayList<Movimiento> listaMomivientos;
 
     public AdaptadorMovimientos(ArrayList<Movimiento> listaMomivientos) {
@@ -29,18 +30,21 @@ public class AdaptadorMovimientos extends RecyclerView.Adapter<AdaptadorMovimien
         return new ViewHolderMovimientos(vista);
     }//Fin del onCreate
 
-    //Asigna uin color al monto dependiendo de su valor
     @Override
     public void onBindViewHolder(@NonNull ViewHolderMovimientos holder, int position) {
         holder.descripcion.setText(listaMomivientos.get(position).getDetalle());
         holder.monto.setText(String.valueOf(listaMomivientos.get(position).getMonto()));
         holder.fecha.setText(listaMomivientos.get(position).getFecha());
+
+        //Asigna un color al monto dependiendo de su valor
         if(listaMomivientos.get(position).getMonto()<=0){
             holder.monto.setTextColor(Color.parseColor("#DB1319"));
         }else{
             holder.monto.setTextColor(Color.parseColor("#218F3E"));
         }//Fin del else
+
     }//Fin de onBindViewHolder
+
     //Cuenta los items dentro de la lista
     @Override
     public int getItemCount() {

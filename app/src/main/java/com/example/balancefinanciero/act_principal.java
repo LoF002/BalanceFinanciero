@@ -61,7 +61,9 @@ public class act_principal extends AppCompatActivity implements AdapterView.OnIt
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lyt_principal);
+
         inicializarDatabase();
+
         ingresosTotales = (TextView) findViewById(R.id.txt_totalIngresos);
         gastosTotales = (TextView) findViewById(R.id.txt_totalGastos);
 
@@ -84,6 +86,7 @@ public class act_principal extends AppCompatActivity implements AdapterView.OnIt
         adapterSpinnerDias.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerDias.setAdapter(adapterSpinnerDias);
         spinnerDias.setOnItemSelectedListener(this);
+        //Fin Spinner dias
 
         //Spinner meses
         spinnerMeses = findViewById(R.id.spinnerMeses);
@@ -92,6 +95,8 @@ public class act_principal extends AppCompatActivity implements AdapterView.OnIt
         adapterSpinnerMeses.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerMeses.setAdapter(adapterSpinnerMeses);
         spinnerMeses.setOnItemSelectedListener(this);
+        //Fin Spinner meses
+
         pruebaDatos();
 
         btn_vistaCuentas = findViewById(R.id.btn_vistaCuentas);
@@ -113,7 +118,7 @@ public class act_principal extends AppCompatActivity implements AdapterView.OnIt
     }//Fin de inicializarDatabase
     public void pruebaDatos(){//Prueba a registrar un movimineto en la BD segun el usuario que haya iniciado sesion
         user=firebaseAuth.getCurrentUser();
-        Cuenta nuevaCuenta=new Cuenta(UUID.randomUUID().toString(),user.getUid(),"BCR","Cuenta bancaria",true);
+        Cuenta nuevaCuenta=new Cuenta(UUID.randomUUID().toString(),user.getUid(),"BCR","Cuenta bancaria",true, 500000);
         Movimiento nuevoMov=new Movimiento("10-15-2021","Ropa", 20000, false);
         ArrayList<Movimiento> listaPrueba=new ArrayList<>();
         listaPrueba.add(nuevoMov);
@@ -209,6 +214,7 @@ public class act_principal extends AppCompatActivity implements AdapterView.OnIt
 
         dialog.show();
     }//Fin del dialog
+
     //Registra los movimientos de dinero y sus datos
     private void llenarMovientos(Movimiento movimiento) {
         listaMovimientos.add(movimiento);
@@ -226,6 +232,7 @@ public class act_principal extends AppCompatActivity implements AdapterView.OnIt
             ingresosTotales.setText(String.valueOf(ingresosActuales+monto));
         }//Fin else
     }//Fin metodo
+
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
