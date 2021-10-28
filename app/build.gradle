@@ -40,6 +40,9 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation "androidx.recyclerview:recyclerview:1.2.1"
 
+    //dependencia para sensor biometria para huella
+    implementation 'androidx.biometric:biometric:1.0.1'
+
     //google firebase
     implementation platform('com.google.firebase:firebase-bom:28.4.2')
     implementation 'com.google.firebase:firebase-database'
