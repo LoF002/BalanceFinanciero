@@ -60,8 +60,8 @@ public class act_login extends AppCompatActivity {
         BiometricManager biometricManager = BiometricManager.from(this);
 
         //Switch para realizar acciones dependiendo de los resultados de la biometria
-        switch (biometricManager.canAuthenticate()){
-            case BiometricManager.BIOMETRIC_SUCCESS:
+        switch (biometricManager.canAuthenticate()){//se hacen las validaciones en caso de existir huellas o no haber huellas, o no haber sensor de huellas
+            case BiometricManager.BIOMETRIC_SUCCESS://se puede usar el sensor
                 txt_msgHuellaDisponibilidad.setText("Inicio mediante huella digital/biometria disponible");
                 break;
             case BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE: //Esta es para los dispositivos sin lector de huella
@@ -70,7 +70,7 @@ public class act_login extends AppCompatActivity {
             case BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE:
                 txt_msgHuellaDisponibilidad.setText("No disponible en este momento");
                 break;
-            case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
+            case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED://no hay huellas registradas
                 txt_msgHuellaDisponibilidad.setText("No existe registro de una huella");
                 break;
         }//Fin switch
@@ -95,12 +95,13 @@ public class act_login extends AppCompatActivity {
         });//Fin AuthenticationCallback
 
         BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder()
+                //dialogo con el que el usuario se encontrara cuando seleccione iniciar con huella
                 .setTitle("Ingreso")
                 .setDescription("")
                 .setNegativeButtonText("Cancel")
                 .build();
 
-        btn_biometricLogin.setOnClickListener(new View.OnClickListener() {
+        btn_biometricLogin.setOnClickListener(new View.OnClickListener() {//boton que inicia las validaciones y metodos para hacer login con huella
             @Override
             public void onClick(View v) {
                 biometricPrompt.authenticate(promptInfo);
