@@ -103,7 +103,7 @@ public class act_principal extends AppCompatActivity implements AdapterView.OnIt
 
     }//Fin onCreate
 
-    private void inicializarDatabase() {
+    private void inicializarDatabase() {//se accede a la base de datos
         FirebaseApp.initializeApp(this);
         firebaseAuth=FirebaseAuth.getInstance();
         databaseReference= FirebaseDatabase.getInstance().getReference();
@@ -169,7 +169,7 @@ public class act_principal extends AppCompatActivity implements AdapterView.OnIt
                 double montoTransaccion;
 
                 try {
-                    montoTransaccion = Double.parseDouble(monto.getText().toString());
+                    montoTransaccion = Double.parseDouble(monto.getText().toString());//se obtiene el monto de la transaccion
                 }catch (Exception e){
                     montoTransaccion=0;
                 }
@@ -185,9 +185,9 @@ public class act_principal extends AppCompatActivity implements AdapterView.OnIt
                     valorIngreso=false;
                     montoTransaccion=montoTransaccion*-1;//convierte en negativo el valor si se trata de un gasto
                 }
-
+                //luego se las validaciones de los datos se verifican y se llaman a los metodos que actualizan los movimientos
                 if((ingreso.isChecked()||gasto.isChecked())&&!detalleTransacion.isEmpty()&&montoTransaccion!=0) {
-                   Movimiento nuevoMovimiento = new Movimiento(dia, detalleTransacion, montoTransaccion, valorIngreso);
+                   Movimiento nuevoMovimiento = new Movimiento(dia, detalleTransacion, montoTransaccion, valorIngreso);//se crea un nuevo movimiento para guardarlo posteriormente
                     llenarMovientos(nuevoMovimiento);
                     actualizarBalance(montoTransaccion);
                     dialog.dismiss();
@@ -196,7 +196,7 @@ public class act_principal extends AppCompatActivity implements AdapterView.OnIt
                 }
             }
         });
-        cancelar.setOnClickListener(new View.OnClickListener() {
+        cancelar.setOnClickListener(new View.OnClickListener() {//en caso de no querer ingresar ningun movimiento
             @Override
             public void onClick(View v) {
 
@@ -213,10 +213,11 @@ public class act_principal extends AppCompatActivity implements AdapterView.OnIt
 
     //Actualiza el monto actual de la cuenta
     private void actualizarBalance(double monto){
+        //se obtienen los datos ingresados
         double ingresosActuales = Double.parseDouble(ingresosTotales.getText().toString());
         double gastosActuales = Double.parseDouble(gastosTotales.getText().toString());
 
-        if(monto<0){
+        if(monto<0){//se imprime el nuevo monto en pantalla
             gastosTotales.setText(String.valueOf(gastosActuales+monto));
         }//Fin else
         else{
