@@ -73,11 +73,11 @@ public class act_login extends AppCompatActivity {
                                 //Comparara el usuario ingresado con el de la base de datos y si es valido realiza el intent
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if (task.isSuccessful()){
+                                    if (task.isSuccessful()){//se comprueba si el usuario es correcto
                                         user=firebaseAuth.getCurrentUser();
-                                        Toast.makeText(act_login.this, "Bienvenido: "+user.getDisplayName(), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(act_login.this, "Bienvenido: "+user.getDisplayName(), Toast.LENGTH_SHORT).show();//se le indica al usuario que se pudo hacer login
                                      Intent intent = new Intent(act_login.this, act_loading_screen.class);
-                                        startActivity(intent);
+                                        startActivity(intent);//se redirige a la pantalla de carga para luego ir a la pantalla principal
                                         limpiar();
                                     }else{
 
@@ -85,7 +85,7 @@ public class act_login extends AppCompatActivity {
                                             throw task.getException();
                                         }//Fin del try
                                         catch(Exception e) {
-                                            Toast.makeText(act_login.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                                            Toast.makeText(act_login.this, e.getMessage(), Toast.LENGTH_LONG).show();//se imprime el error
                                         }//fin del cath
                                     }//Fin del else
 
@@ -103,7 +103,7 @@ public class act_login extends AppCompatActivity {
         btnRegistrate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(act_login.this, act_registro.class);
+                Intent intent = new Intent(act_login.this, act_registro.class);//se envia a la pantalla de registro
                 startActivity(intent);
             }//Fin Onclick
         });//Fin btnRegistrate
@@ -111,9 +111,10 @@ public class act_login extends AppCompatActivity {
 
     //Validacion de espacios
     private boolean validar() {
+        //se obtienen los datos de los inputs
         String correo=txtCorreo.getText().toString();
         String password=txtContrasenia.getText().toString();
-        if(correo.isEmpty()){
+        if(correo.isEmpty()){//se valida si estan vacios o contienen datos
             txtCorreo.setError("Requerido");
             return false;
         }else if(password.isEmpty()){
@@ -133,7 +134,7 @@ public class act_login extends AppCompatActivity {
     //Inicializa la BD diciendole cual usar y preparando el Autenticator
     private void inicializarDB() {
         FirebaseApp.initializeApp(this);
-        firebaseAuth=FirebaseAuth.getInstance();
+        firebaseAuth=FirebaseAuth.getInstance();//se instacia la base de datos
         databaseReference= FirebaseDatabase.getInstance().getReference();
     }//Fin metodo inicializarDB
 
