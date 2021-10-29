@@ -108,7 +108,7 @@ public class act_principal extends AppCompatActivity implements AdapterView.OnIt
         firebaseAuth=FirebaseAuth.getInstance();
         databaseReference= FirebaseDatabase.getInstance().getReference();
     }//Fin de inicializarDatabase
-    public void pruebaDatos(){//Prueba a registrar un movimineto en la BD segun el usuario que haya iniciado sesion
+    public void pruebaDatos(){//Prueba a registrar un movimiento en la BD segun el usuario que haya iniciado sesion
         user=firebaseAuth.getCurrentUser();
         Cuenta nuevaCuenta=new Cuenta(UUID.randomUUID().toString(),user.getUid(),"BCR","Cuenta bancaria",true);
         Movimiento nuevoMov=new Movimiento("10-15-2021","Ropa", 20000, false);
