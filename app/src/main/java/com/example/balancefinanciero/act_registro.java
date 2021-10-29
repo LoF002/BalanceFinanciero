@@ -68,27 +68,27 @@ public class act_registro extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if(validar()){
-                    firebaseAuth.createUserWithEmailAndPassword(txtCorreoRegistro.getText().toString(),txtContrasenaRegistro.getText().toString())
+                if(validar()){//se validan los datos a guardar
+                    firebaseAuth.createUserWithEmailAndPassword(txtCorreoRegistro.getText().toString(),txtContrasenaRegistro.getText().toString())//se crea un nuevo campo de usuario
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
 
 
                                 @Override
 
                                 public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if (task.isSuccessful()){
+                                    if (task.isSuccessful()){//se valida si se guardo correctamente en la base de datos
                                         String nombreCompleto=txtNombre.getText().toString()+" "+txtApellidos.getText().toString();
-                                        Toast.makeText(act_registro.this, "Agregado correctamente", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(act_registro.this, "Agregado correctamente", Toast.LENGTH_SHORT).show();//se le indica al usuario que se guardo bien
                                         UserProfileChangeRequest profileUpdates= new UserProfileChangeRequest.Builder().setDisplayName(nombreCompleto) .build();
-                                        user=firebaseAuth.getCurrentUser();
+                                        user=firebaseAuth.getCurrentUser();//se obtiene el usuario creado
                                         user.updateProfile(profileUpdates)
                                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                     @Override
                                                     public void onComplete(@NonNull Task<Void> task) {
                                                         if (task.isSuccessful()) {
-                                                            Toast.makeText(act_registro.this, "nombre: "+user.getDisplayName(), Toast.LENGTH_SHORT).show();
+                                                            Toast.makeText(act_registro.this, "nombre: "+user.getDisplayName(), Toast.LENGTH_SHORT).show();//se indica el usuario creado
                                                             limpiar();
-                                                            Intent intent = new Intent(act_registro.this, act_login.class);
+                                                            Intent intent = new Intent(act_registro.this, act_login.class);//se redirige al login para iniciar sesion con el usuario creado
                                                             startActivity(intent);
                                                         }//Fin if
                                                     }//Fin onComplete
@@ -102,7 +102,7 @@ public class act_registro extends AppCompatActivity {
                                             throw task.getException();
                                         }
                                         catch(Exception e) {
-                                            Toast.makeText(act_registro.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                                            Toast.makeText(act_registro.this, e.getMessage(), Toast.LENGTH_LONG).show();//se imprime el error en caso de no guardarse correctamente
                                         }
                                     }
 
@@ -116,6 +116,7 @@ public class act_registro extends AppCompatActivity {
         });//Fin btnRegistrar
     }
     private boolean validar() {
+        //se validan los campos a guardar para que hayan datos en los inputs para guaradarlos en la base de datos
         String nombre=txtNombre.getText().toString();
         String apellidos=txtApellidos.getText().toString();
         String correo=txtCorreoRegistro.getText().toString();
@@ -138,7 +139,7 @@ public class act_registro extends AppCompatActivity {
 
     }
 
-    public void limpiar(){
+    public void limpiar(){//se limpian los inputs al final del proceso
         txtNombre.setText("");
         txtApellidos.setText("");
         txtCorreoRegistro.setText("");
