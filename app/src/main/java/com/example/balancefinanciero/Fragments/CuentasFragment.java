@@ -1,22 +1,23 @@
-package com.example.balancefinanciero;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+package com.example.balancefinanciero.Fragments;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
+
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.provider.MediaStore;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -28,12 +29,17 @@ import android.widget.Toast;
 
 import com.example.balancefinanciero.Modelo.AdaptadorCuentas;
 import com.example.balancefinanciero.Modelo.Cuenta;
+import com.example.balancefinanciero.R;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class act_cuenta extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class CuentasFragment extends Fragment implements AdapterView.OnItemSelectedListener{
+
+    Button btnCamara;
+
+    ImageView fotoPerfil;
 
     ArrayList<Cuenta> listaCuentas;
 
@@ -41,50 +47,46 @@ public class act_cuenta extends AppCompatActivity implements AdapterView.OnItemS
 
     ImageButton btn_registrarCuenta;
 
-    ImageButton btn_vistaRegistro;
-    Button btnCamara;
-    ImageView fotoPerfil;
+    public CuentasFragment() {
+        // Required empty public constructor
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lyt_cuenta);
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View vista = inflater.inflate(R.layout.fragment_cuentas, container, false);
 
         //codigo para camara y foto perfil
-        btnCamara=findViewById(R.id.btn_cambiarFoto);
-        fotoPerfil=findViewById(R.id.imgProfile);
+        btnCamara = vista.findViewById(R.id.btn_cambiarFoto);
+        fotoPerfil = vista.findViewById(R.id.imgProfile);
         CapturarFoto();
 
         //codigo para usar recycler personalizado
         listaCuentas=new ArrayList<>();
-        recyclerCuentas= (RecyclerView) findViewById(R.id.recyclerCuentas);
-        recyclerCuentas.setLayoutManager(new LinearLayoutManager(this));
+        recyclerCuentas= (RecyclerView) vista.findViewById(R.id.recyclerCuentas);
+        recyclerCuentas.setLayoutManager(new LinearLayoutManager(getContext()));
         AdaptadorCuentas adapter=new AdaptadorCuentas(listaCuentas);
         recyclerCuentas.setAdapter(adapter);
         //fin codigo recycler
 
         //Codigo para actuallizar cuentas
-        btn_registrarCuenta= (ImageButton) findViewById(R.id.btn_registrarCuenta);
+        btn_registrarCuenta= (ImageButton) vista.findViewById(R.id.btn_registrarCuenta);
         btn_registrarCuenta.setOnClickListener((View)->{showDialog();});
-        btn_vistaRegistro = findViewById(R.id.btn_vistaRegistro2);
 
-
-        //Listener del boton para pasar a la vista de registro
-        btn_vistaRegistro.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Intent hacia la clase principal (Registro de movimientos)
-                Intent intent = new Intent(act_cuenta.this, act_principal.class);
-                startActivity(intent);
-            }//Fin onclick
-        });//Fin de btn_vistaRegistro
-
-    }//Fin del onCreate
+        return vista;
+    }//Fin onCreateView
 
     private void CapturarFoto() {
         //verifica los permisos y los solicitan si no estan activados
-        if(ContextCompat.checkSelfPermission(act_cuenta.this, Manifest.permission.CAMERA)!= PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(act_cuenta.this, new String[]{
+        if(ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA)!= PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(getActivity(), new String[]{
                             Manifest.permission.CAMERA
                     },
                     100);
@@ -95,22 +97,24 @@ public class act_cuenta extends AppCompatActivity implements AdapterView.OnItemS
             @Override
             public void onClick(View view) {
 
-                lanzarCamara();
+                //lanzarCamara();
             }
         });
     }
 
+    /*
     private void lanzarCamara() {
         Intent intentC=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if(intentC.resolveActivity(getPackageManager())!=null){
             startActivityForResult(intentC, 100);
         }
     }
+
     protected void onActivityResult(int requestCode, int codeResult,@Nullable Intent data) {
         super.onActivityResult(requestCode, codeResult, data);
 
         if (requestCode == 100 && codeResult == RESULT_OK) {
-            Toast.makeText(this, "entro", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "entro", Toast.LENGTH_SHORT).show();
             ;
             Bitmap imgBitMap = (Bitmap) data.getExtras().get("data");
 
@@ -120,9 +124,10 @@ public class act_cuenta extends AppCompatActivity implements AdapterView.OnItemS
         }
     }
 
+     */
 
     private void showDialog() {
-        final Dialog dialog = new Dialog(act_cuenta.this);
+        final Dialog dialog = new Dialog(getContext());
         //We have added a title in the custom layout. So let's disable the default title.
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         //The user will be able to cancel the dialog bu clicking anywhere outside the dialog.
@@ -176,7 +181,7 @@ public class act_cuenta extends AppCompatActivity implements AdapterView.OnItemS
                     llenarCuentas(nuevaCuenta);
                     dialog.dismiss();
                 }else{
-                    Toast.makeText(getApplicationContext(),"Faltan datos", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),"Faltan datos", Toast.LENGTH_LONG).show();
                 }
             }//Fin del onClick
         });
@@ -204,4 +209,4 @@ public class act_cuenta extends AppCompatActivity implements AdapterView.OnItemS
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
-}//Fin de la clase
+}

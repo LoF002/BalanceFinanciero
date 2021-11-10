@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/cuentasFragment"
+        android:icon="@drawable/grupo_61"
+        android:title="Cuentas"
+        />
+    <item
+        android:id="@+id/fechasFragment"
+        android:icon="@drawable/grupo_62"
+        android:title="Fechas"
+        />
+    <item
+        android:id="@+id/registroFragment"
+        android:icon="@drawable/grupo_63"
+        android:title="Registro"
+        />
+    <item
+        android:id="@+id/reportesFragment"
+        android:icon="@drawable/grupo_64"
+        android:title="Reportes"
+        />
+    <item
+        android:id="@+id/monederoFragment"
+        android:icon="@drawable/grupo_65"
+        android:title="Monedero"
+        />
+</menu>
