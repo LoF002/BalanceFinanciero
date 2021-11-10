@@ -1,91 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/txt_dialogTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/segoe_ui_bold"
-        android:text="Añadir nuevo movimiento"
-        android:textColor="@color/azul"
-        android:textSize="20sp"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="10dp"
-        />
-
-    <EditText
-        android:id="@+id/et_detalleId"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:hint="Detalle"
-        android:inputType="textPersonName" />
-
-    <EditText
-        android:id="@+id/et_montoId"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="5dp"
-        android:ems="10"
-        android:hint="Monto de transaccion"
-        android:inputType="numberDecimal" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginLeft="10dp"
-        android:orientation="horizontal">
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="30dp"
+        android:paddingVertical="30dp">
 
         <TextView
-            android:id="@+id/txt_tipo"
-            android:layout_width="275dp"
+            android:id="@+id/txt_dialogTitle"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Tipo de movimiento" />
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/segoe_ui_bold"
+            android:text="Nuevo Registro"
+            android:textColor="@color/azul"
+            android:textSize="20sp" />
 
-        <RadioGroup
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:background="#FFFFFF"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-            <RadioButton
-                android:id="@+id/btn_rIngreso"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ingreso" />
+            <Button
+                android:id="@+id/btn_Ingreso"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_ingreso"
+                android:fontFamily="@font/nunito_bold"
+                android:text="Ingreso"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/blanco" />
 
-            <RadioButton
-                android:id="@+id/btn_rGasto"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Gasto" />
-        </RadioGroup>
-    </LinearLayout>
+            <Button
+                android:id="@+id/btn_gasto"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_disabled"
+                android:fontFamily="@font/nunito_bold"
+                android:text="Gasto"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/silver" />
+        </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:layout_marginLeft="10dp">
-
-        <Button
-            android:id="@+id/btn_cancelar"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cancelar" />
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/nunito_bold"
+            android:text="Monto"
+            android:textColor="@color/azul"
+            android:textSize="14sp" />
 
-        <Button
-            android:id="@+id/btn_guardar"
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/et_montoId"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Guardar"
-            />
+
+            android:layout_marginTop="5dp"
+            android:ems="10"
+            android:fontFamily="@font/segoe_ui"
+            android:hint="15000"
+            android:inputType="numberDecimal" />
+
+        <TextView
+            android:id="@+id/txtDetalle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/nunito_bold"
+            android:text="Detalle"
+            android:textColor="@color/azul"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/et_detalle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="5dp"
+            android:ems="10"
+            android:fontFamily="@font/segoe_ui"
+            android:hint="Horas Asistente - UCR" />
+
+
+        <TextView
+            android:id="@+id/txtDetalle2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/nunito_bold"
+            android:text="Cuenta"
+            android:textColor="@color/azul"
+            android:textSize="14sp" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:entries="@array/meses" />
+
+        <TextView
+            android:id="@+id/txtFecha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="@font/nunito_bold"
+            android:text="Fecha"
+            android:textColor="@color/azul"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/editTextTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:ems="10"
+            android:hint="10 / sep / 21"
+            android:inputType="time" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_cancelarAC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="7dp"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_corners"
+                android:fontFamily="@font/segoe_ui_bold"
+                android:text="Cancelar"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/azul" />
+
+            <Button
+                android:id="@+id/btn_guardarCuenta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_weight="1"
+                android:background="@drawable/rounded2"
+                android:fontFamily="@font/segoe_ui_bold"
+                android:text="Guardar"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/blanco" />
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

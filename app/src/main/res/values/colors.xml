@@ -5,6 +5,12 @@
     <color name="celeste_secundario">#7FD2FD</color>
     <color name="fondo">#E9EBED</color>
     <color name="blanco">#FFFFFF</color>
+    <color name="yellowgreen">#74c757</color>
+    <color name="red">#f66969</color>
+    <color name="silver">#c3c2c2</color>
+    <color name="celeste_terciario">#e8f6fe</color>
+
+
 
 
 </resources>

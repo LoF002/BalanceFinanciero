@@ -16,10 +16,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.balancefinanciero.Modelo.AdaptadorMovimientos;
 import com.example.balancefinanciero.Modelo.Movimiento;
@@ -41,6 +39,8 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
 
     ImageButton btn_registrarMovimiento;
 
+
+
     public RegistroFragment(){
         // Required empty public constructor
     }
@@ -57,6 +57,7 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
         View vista = inflater.inflate(R.layout.fragment_registro, container, false);
 
         //Spinner dias
+
         spinnerDias = vista.findViewById(R.id.spinnerDias);
         ArrayAdapter<CharSequence> adapterSpinnerDias = ArrayAdapter.createFromResource(getContext(),
                 R.array.dias, android.R.layout.simple_spinner_item);
@@ -101,12 +102,13 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
         dialog.setContentView(R.layout.transaction_dialog);
 
         //Initializing the views of the dialog.
-        final EditText detalle = dialog.findViewById(R.id.et_detalleId);
+        //final EditText detalle = dialog.findViewById(R.id.et_detalleId);
         final EditText monto = dialog.findViewById(R.id.et_montoId);
-        final RadioButton ingreso= dialog.findViewById(R.id.btn_rIngreso);
-        final RadioButton  gasto= dialog.findViewById(R.id.btn_rGasto);
-        Button guardar = dialog.findViewById(R.id.btn_guardar);
-        Button cancelar = dialog.findViewById(R.id.btn_cancelar);
+        //inal RadioButton ingreso= dialog.findViewById(R.id.btn_rIngreso);
+        //final RadioButton  gasto= dialog.findViewById(R.id.btn_rGasto);
+        Button guardar = dialog.findViewById(R.id.btn_guardarCuenta);
+        Button cancelar = dialog.findViewById(R.id.btn_cancelarAC);
+
         //obtener una instancia del tiempo "ahora"
         Calendar calendario= Calendar.getInstance();
         // obtener el formato deseado
@@ -121,7 +123,7 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
                 String age = ageEt.getText().toString();
                 Boolean hasAccepted = termsCb.isChecked();
                 populateInfoTv(name,age,hasAccepted);*/
-                String detalleTransacion=detalle.getText().toString();
+                //String detalleTransacion=detalle.getText().toString();
                 double montoTransaccion;
 
                 try {
@@ -131,6 +133,7 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
                 }
                 boolean valorIngreso=false;
                 //se corrigen valores negativos
+                /*
                 if (montoTransaccion<0){
                     montoTransaccion=montoTransaccion*-1;
                 }
@@ -149,7 +152,7 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
                     dialog.dismiss();
                 }else{
                     Toast.makeText(getContext(),"Faltan datos", Toast.LENGTH_LONG).show();
-                }
+                }*/
             }//Fin del onClick
         });
         cancelar.setOnClickListener(new View.OnClickListener() {

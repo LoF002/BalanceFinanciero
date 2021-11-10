@@ -136,10 +136,10 @@ public class CuentasFragment extends Fragment implements AdapterView.OnItemSelec
         dialog.setContentView(R.layout.add_account_dialog);
 
         //Initializing the views of the dialog.
-        final EditText entidad = dialog.findViewById(R.id.et_entidadAC);
-        final EditText monto = dialog.findViewById(R.id.et_saldoInicialAC);
-        final RadioButton debito= dialog.findViewById(R.id.btn_rDebito);
-        final RadioButton  credito= dialog.findViewById(R.id.btn_rCredito);
+        //final EditText entidad = dialog.findViewById(R.id.et_entidadAC);
+        //final EditText monto = dialog.findViewById(R.id.et_saldoInicialAC);
+        //final RadioButton debito= dialog.findViewById(R.id.btn_rDebito);
+       // final RadioButton  credito= dialog.findViewById(R.id.btn_rCredito);
         Button guardar = dialog.findViewById(R.id.btn_guardarCuenta);
         Button cancelar = dialog.findViewById(R.id.btn_cancelarAC);
         //obtener una instancia del tiempo "ahora"
@@ -156,11 +156,11 @@ public class CuentasFragment extends Fragment implements AdapterView.OnItemSelec
                 String age = ageEt.getText().toString();
                 Boolean hasAccepted = termsCb.isChecked();
                 populateInfoTv(name,age,hasAccepted);*/
-                String entidadCuenta = entidad.getText().toString();
+               // String entidadCuenta = entidad.getText().toString();
                 double saldoCuenta = 0;
                 String tipoCuenta = "";
 
-                try {
+               /* try {
                     saldoCuenta = Double.parseDouble(monto.getText().toString());
                 }catch (Exception e){
                     saldoCuenta=0;
@@ -182,7 +182,7 @@ public class CuentasFragment extends Fragment implements AdapterView.OnItemSelec
                     dialog.dismiss();
                 }else{
                     Toast.makeText(getContext(),"Faltan datos", Toast.LENGTH_LONG).show();
-                }
+                }*/
             }//Fin del onClick
         });
         cancelar.setOnClickListener(new View.OnClickListener() {
