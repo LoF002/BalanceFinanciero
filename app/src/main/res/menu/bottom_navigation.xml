@@ -2,27 +2,27 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/cuentasFragment"
-        android:icon="@drawable/grupo_61"
+        android:icon="@drawable/grupo_61_2"
         android:title="Cuentas"
         />
     <item
         android:id="@+id/fechasFragment"
-        android:icon="@drawable/grupo_62"
+        android:icon="@drawable/grupo_62_2"
         android:title="Fechas"
         />
     <item
         android:id="@+id/registroFragment"
-        android:icon="@drawable/grupo_63"
+        android:icon="@drawable/grupo_63_2"
         android:title="Registro"
         />
     <item
         android:id="@+id/reportesFragment"
-        android:icon="@drawable/grupo_64"
+        android:icon="@drawable/grupo_64_2"
         android:title="Reportes"
         />
     <item
         android:id="@+id/monederoFragment"
-        android:icon="@drawable/grupo_65"
+        android:icon="@drawable/grupo_66_2"
         android:title="Monedero"
         />
 </menu>
