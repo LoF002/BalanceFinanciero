@@ -46,7 +46,7 @@ public class ReportesFragment extends Fragment {
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
-    }
+    }// fin de ReportesFragment
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,12 +55,12 @@ public class ReportesFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-    }
+    }//fin del oncreate
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_reportes, container, false);
-    }
-}
+    }//fin del onCreateView
+}//fin de la clase

@@ -30,6 +30,7 @@ import java.util.Calendar;
 
 public class RegistroFragment extends Fragment implements AdapterView.OnItemSelectedListener {
 
+    //declaracion de variables
     Spinner spinnerDias, spinnerMeses;
     TextView ingresosTotales, gastosTotales;
 
@@ -60,8 +61,8 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
 
         spinnerDias = vista.findViewById(R.id.spinnerDias);
         ArrayAdapter<CharSequence> adapterSpinnerDias = ArrayAdapter.createFromResource(getContext(),
-                R.array.dias, android.R.layout.simple_spinner_item);
-        adapterSpinnerDias.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                R.array.dias, android.R.layout.simple_spinner_item);//se asigna el adapter correspondiente  al spinner
+        adapterSpinnerDias.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);//se asigna el layout que se usara
         spinnerDias.setAdapter(adapterSpinnerDias);
         spinnerDias.setOnItemSelectedListener(this);
         //Fin Spinner dias
@@ -72,28 +73,28 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
         //Spinner meses
         spinnerMeses = vista.findViewById(R.id.spinnerMeses);
         ArrayAdapter<CharSequence> adapterSpinnerMeses = ArrayAdapter.createFromResource(getContext(),
-                R.array.meses, android.R.layout.simple_spinner_item);
-        adapterSpinnerMeses.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                R.array.meses, android.R.layout.simple_spinner_item);//se asigna el adapter correspondiente  al spinner
+        adapterSpinnerMeses.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);//se asigna el layout que se usara
         spinnerMeses.setAdapter(adapterSpinnerMeses);
         spinnerMeses.setOnItemSelectedListener(this);
         //Fin Spinner meses
 
         //codigo para usar recycler personalizado
-        listaMovimientos=new ArrayList<>();
+        listaMovimientos=new ArrayList<>();//declaracion
         recyclerMomivientos = (RecyclerView) vista.findViewById(R.id.recyclerMovimientos);
-        recyclerMomivientos.setLayoutManager(new LinearLayoutManager(getContext()));
-        AdaptadorMovimientos adapter=new AdaptadorMovimientos(listaMovimientos);
-        recyclerMomivientos.setAdapter(adapter);
+        recyclerMomivientos.setLayoutManager(new LinearLayoutManager(getContext()));//se asigna el layout
+        AdaptadorMovimientos adapter=new AdaptadorMovimientos(listaMovimientos);//se declara y se inicializa el adapter a usar
+        recyclerMomivientos.setAdapter(adapter);//se asigna el adapter
         //fin codigo recycler
 
         btn_registrarMovimiento = vista.findViewById(R.id.btn_registrarMovimiento);
-        btn_registrarMovimiento.setOnClickListener((View)->{showDialog();});
+        btn_registrarMovimiento.setOnClickListener((View)->{showDialog();});//se asing el metodo a usar del boton
 
-        return vista;
-    }
+        return vista;//se devuelve la vista a usar
+    }//fin del oncreateView
 
     private void showDialog() {
-        final Dialog dialog = new Dialog(getContext());
+        final Dialog dialog = new Dialog(getContext());//se declara
         //We have added a title in the custom layout. So let's disable the default title.
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         //The user will be able to cancel the dialog bu clicking anywhere outside the dialog.
@@ -103,20 +104,20 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
 
         //Initializing the views of the dialog.
         //final EditText detalle = dialog.findViewById(R.id.et_detalleId);
-        final EditText monto = dialog.findViewById(R.id.et_montoId);
+        final EditText monto = dialog.findViewById(R.id.et_montoId);//se iguala
         //inal RadioButton ingreso= dialog.findViewById(R.id.btn_rIngreso);
         //final RadioButton  gasto= dialog.findViewById(R.id.btn_rGasto);
         Button guardar = dialog.findViewById(R.id.btn_guardarCuenta);
         Button cancelar = dialog.findViewById(R.id.btn_cancelarAC);
 
         //obtener una instancia del tiempo "ahora"
-        Calendar calendario= Calendar.getInstance();
+        Calendar calendario= Calendar.getInstance();// se declara la variable del calendario
         // obtener el formato deseado
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
         //convertir
         String dia = dateFormat.format(calendario.getTime());
 
-        guardar.setOnClickListener(new View.OnClickListener() {
+        guardar.setOnClickListener(new View.OnClickListener() {//se le da funcionabilidad al boton
             @Override
             public void onClick(View v) {
                 /*String name = nameEt.getText().toString();
@@ -127,9 +128,9 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
                 double montoTransaccion;
 
                 try {
-                    montoTransaccion = Double.parseDouble(monto.getText().toString());
+                    montoTransaccion = Double.parseDouble(monto.getText().toString());//se obtiene el monton para igualarlo a una variable
                 }catch (Exception e){
-                    montoTransaccion=0;
+                    montoTransaccion=0;//se iguala a 0 en caso de que el monto sea null o algo diferente a lo esperado
                 }
                 boolean valorIngreso=false;
                 //se corrigen valores negativos
@@ -154,14 +155,14 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
                     Toast.makeText(getContext(),"Faltan datos", Toast.LENGTH_LONG).show();
                 }*/
             }//Fin del onClick
-        });
-        cancelar.setOnClickListener(new View.OnClickListener() {
+        });//fin del set onclick listener
+        cancelar.setOnClickListener(new View.OnClickListener() {//funcion del boton de cancelar
             @Override
             public void onClick(View v) {
 
                 dialog.dismiss();
-            }
-        });
+            }//fin del onClick
+        });//fin del set onclick listener
 
         dialog.show();
     }//Fin del dialog
