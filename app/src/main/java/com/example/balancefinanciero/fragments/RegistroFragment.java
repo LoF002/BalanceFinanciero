@@ -1,4 +1,4 @@
-package com.example.balancefinanciero.Fragments;
+package com.example.balancefinanciero.fragments;
 
 import android.app.Dialog;
 import android.os.Bundle;
@@ -19,8 +19,8 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.balancefinanciero.Modelo.AdaptadorMovimientos;
-import com.example.balancefinanciero.Modelo.Movimiento;
+import com.example.balancefinanciero.modelo.AdaptadorMovimientos;
+import com.example.balancefinanciero.modelo.Movimiento;
 import com.example.balancefinanciero.R;
 
 import java.text.SimpleDateFormat;

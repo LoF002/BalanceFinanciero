@@ -1,6 +1,5 @@
-package com.example.balancefinanciero.Modelo;
+package com.example.balancefinanciero.modelo;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 public class RegistroCliente {

@@ -1,4 +1,4 @@
-package com.example.balancefinanciero.Modelo;
+package com.example.balancefinanciero.modelo;
 
 import java.util.ArrayList;
 

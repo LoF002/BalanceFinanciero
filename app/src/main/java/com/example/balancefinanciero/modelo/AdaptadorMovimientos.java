@@ -1,4 +1,4 @@
-package com.example.balancefinanciero.Modelo;
+package com.example.balancefinanciero.modelo;
 
 import android.graphics.Color;
 import android.view.LayoutInflater;

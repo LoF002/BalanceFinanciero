@@ -1,6 +1,4 @@
-package com.example.balancefinanciero.Modelo;
-
-import java.time.LocalDateTime;
+package com.example.balancefinanciero.modelo;
 
 public class Movimiento {
     private String fecha;

@@ -1,4 +1,4 @@
-package com.example.balancefinanciero.Fragments;
+package com.example.balancefinanciero.fragments;
 
 import android.os.Bundle;
 

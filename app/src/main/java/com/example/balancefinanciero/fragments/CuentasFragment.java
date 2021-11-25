@@ -1,34 +1,27 @@
-package com.example.balancefinanciero.Fragments;
+package com.example.balancefinanciero.fragments;
 
 import android.Manifest;
 import android.app.Dialog;
-import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.RadioButton;
-import android.widget.Toast;
 
-import com.example.balancefinanciero.Modelo.AdaptadorCuentas;
-import com.example.balancefinanciero.Modelo.Cuenta;
+import com.example.balancefinanciero.modelo.AdaptadorCuentas;
+import com.example.balancefinanciero.modelo.Cuenta;
 import com.example.balancefinanciero.R;
 
 import java.text.SimpleDateFormat;
