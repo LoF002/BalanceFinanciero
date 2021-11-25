@@ -5,6 +5,8 @@ import android.os.Parcelable;
 
 public class Cliente implements Parcelable {
 
+    //Clase del objeto del cliente o usuario de la aplicacion, esta contiene todos los atributos necesarios
+
     private String usuario, contrasena, nombres, apellidos;
 
     public Cliente(String usuario, String contrasena, String nombres, String apellidos) {

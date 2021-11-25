@@ -93,7 +93,7 @@ public class CuentasFragment extends Fragment implements AdapterView.OnItemSelec
                 //lanzarCamara();
             }
         });
-    }
+    }//fin del metodo
 
     /*
     private void lanzarCamara() {

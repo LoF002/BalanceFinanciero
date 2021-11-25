@@ -1,6 +1,9 @@
 package com.example.balancefinanciero.modelo;
 
 public class Movimiento {
+
+    //Clase del objeto movimiento  para registrar todos los movimientos del usuario en la pantalla principal
+
     private String fecha;
     private String detalle;
     private double monto;

@@ -3,6 +3,9 @@ package com.example.balancefinanciero.modelo;
 import java.util.ArrayList;
 
 public class Cuenta {
+
+    //clase del objeto cuenta que sera usado para registrar las cuentas del usuario
+
     String idCuenta,idUsuario, nombre, tipo;
     boolean esEncolones;
     double monto;
