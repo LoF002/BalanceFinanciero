@@ -39,6 +39,7 @@ public class FechasFragment extends Fragment {
      * @return A new instance of fragment FechasFragment.
      */
     // TODO: Rename and change types and number of parameters
+    // Crea una nueva instancia del fragment con los parametros que recibe y retorna el fragment
     public static FechasFragment newInstance(String param1, String param2) {
         FechasFragment fragment = new FechasFragment();
         Bundle args = new Bundle();
@@ -48,6 +49,7 @@ public class FechasFragment extends Fragment {
         return fragment;
     }
 
+    //Verifica si hay informacion, si la hay la asigna  las variables
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
