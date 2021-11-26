@@ -1,5 +1,8 @@
 package com.example.balancefinanciero.modelo;
 
+
+//Clase objeto monedero  para registrar montos en efectivo
+
 public class Monedero {
     private double monto;
     private String detalle;

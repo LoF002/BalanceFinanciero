@@ -20,14 +20,15 @@ public class AdaptadorMonedero extends RecyclerView.Adapter<AdaptadorMonedero.Vi
 
     public AdaptadorMonedero(ArrayList<Monedero> listaMonedero) {
         this.listaMonedero = listaMonedero;
-    }
+    }//Fin de AdaptadorMonederos con parametros por recibir
 
+    //Asigna como se va a ver la lista(De acuerdo al lyt item_list_mov)
     @NonNull
     @Override
     public ViewHolderMonedero onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View vista = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_mov,null,false);
         return new ViewHolderMonedero(vista);
-    }
+    }//Fib de onCreateViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderMonedero holder, int position) {
@@ -35,13 +36,15 @@ public class AdaptadorMonedero extends RecyclerView.Adapter<AdaptadorMonedero.Vi
         holder.fecha.setText(listaMonedero.get(position).getFecha());
         holder.monto.setText(String.valueOf(listaMonedero.get(position).getMonto()));
 
+        //Asigna un color al monto dependiendo de su valor
         if (listaMonedero.get(position).getMonto()>=0){
             holder.monto.setTextColor(Color.parseColor("#218F3E"));
         }else{
             holder.monto.setTextColor(Color.parseColor("#DB1319"));
-        }
-    }
+        }//Fin del else
+    }//Fin de onBinViewHolder
 
+    //Cuenta los items dentro de la lista
     @Override
     public int getItemCount() {
         return listaMonedero.size();
@@ -51,6 +54,7 @@ public class AdaptadorMonedero extends RecyclerView.Adapter<AdaptadorMonedero.Vi
         TextView detalle,fecha,monto;
         ImageView icon;
 
+        //Convierte la informacion a Strings para insertarlos en la vista
         public ViewHolderMonedero(@NonNull View itemView) {
             super(itemView);
 
@@ -58,6 +62,6 @@ public class AdaptadorMonedero extends RecyclerView.Adapter<AdaptadorMonedero.Vi
             fecha = (TextView) itemView.findViewById(R.id.txt_fechaId);
             monto = (TextView) itemView.findViewById(R.id.txt_montoId);
             icon = (ImageView) itemView.findViewById(R.id.img_imagenId);
-        }
-    }
-}
+        }//Fin de metodo ViewHolderMonedero
+    }//Fin de Clase ViewHolderMonedero
+}//Fin de Clase
