@@ -21,6 +21,8 @@ public class ReportesFragment extends Fragment {
 
     //declaracion de los textview
     TextView txt_numeroMovimientos, txt_numeroCantidadCuentas, txt_numeroGastos, txt_numeroTotalIngresos, txt_numeroDineroEfectivo, txt_numeroTotalDineroActual, txt_numeroTotalCuenta;
+    //declaracion de variables locales de valores
+    String numeroMovimientos, numeroCantidadCuentas, numeroGastos, numeroTotalIngresos, numeroDineroEfectivo, numeroTotalDineroActual, numeroTotalCuenta;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -64,7 +66,27 @@ public class ReportesFragment extends Fragment {
         txt_numeroTotalDineroActual = vista.findViewById(R.id.txt_numeroTotalDineroActual);
         txt_numeroTotalCuenta = vista.findViewById(R.id.txt_numeroTotalCuenta);
 
+        txt_numeroMovimientos.setText(numeroMovimientos);
+        txt_numeroCantidadCuentas.setText(numeroCantidadCuentas);
+        txt_numeroGastos.setText(numeroGastos);
+        txt_numeroTotalIngresos.setText(numeroTotalIngresos);
+        txt_numeroDineroEfectivo.setText(numeroDineroEfectivo);
+        txt_numeroTotalDineroActual.setText(numeroTotalDineroActual);
+        txt_numeroTotalCuenta.setText(numeroTotalCuenta);
 
         return vista;//se devuelve la vista a usar
     }//fin del onCreateView
+
+    //setea los valores en la pantalla
+    public void setValores(String numeroMovimientosTemp,String numeroCantidadCuentasTemp,String numeroGastosTemp, String numeroTotalIngresosTemp, String numeroDineroEfectivoTemp, String dineroCuentas){
+        numeroMovimientos = numeroMovimientosTemp;
+        numeroCantidadCuentas = numeroCantidadCuentasTemp;
+        numeroGastos = numeroGastosTemp;
+        numeroTotalIngresos = numeroTotalIngresosTemp;
+        numeroDineroEfectivo = numeroDineroEfectivoTemp;
+        numeroTotalDineroActual = String.valueOf(Double.parseDouble(numeroTotalIngresos)-Double.parseDouble(numeroGastos)+Double.parseDouble(numeroDineroEfectivo)+Double.parseDouble(dineroCuentas));
+        numeroTotalCuenta = String.valueOf(Double.parseDouble(numeroTotalIngresos)-Double.parseDouble(numeroGastos)+Double.parseDouble(dineroCuentas));
+    }//fin del metodo
+
+
 }//fin de la clase

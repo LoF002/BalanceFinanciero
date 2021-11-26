@@ -47,8 +47,6 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
     DatePicker datePicker;
     TimePicker timePicker;
 
-
-
     public RegistroFragment(){
         // Required empty public constructor
     }
@@ -56,6 +54,14 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    public String getIngresosTotales() {
+        return ingresosTotales.getText().toString();
+    }
+
+    public String getGastosTotales() {
+        return gastosTotales.getText().toString();
     }
 
     @Override
@@ -77,6 +83,7 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
         ingresosTotales = (TextView) vista.findViewById(R.id.txt_totalIngresos);
         gastosTotales = (TextView) vista.findViewById(R.id.txt_totalGastos);
 
+
         //Spinner meses
         spinnerMeses = vista.findViewById(R.id.spinnerMeses);
         ArrayAdapter<CharSequence> adapterSpinnerMeses = ArrayAdapter.createFromResource(getContext(),
@@ -96,6 +103,7 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
 
         btn_registrarMovimiento = vista.findViewById(R.id.btn_registrarMovimiento);
         btn_registrarMovimiento.setOnClickListener((View)->{showDialog();});//se asing el metodo a usar del boton
+
 
         return vista;//se devuelve la vista a usar
     }//fin del oncreateView
@@ -239,4 +247,9 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
-}
+
+    public int getListaMovimientosSize(){//tamaño de la lista de movimientos
+        int size = listaMovimientos.size();
+        return size;
+    }//fin del metodo
+}//fin de la clase
