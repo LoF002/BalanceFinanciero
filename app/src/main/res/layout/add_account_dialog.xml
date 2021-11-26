@@ -42,7 +42,7 @@
             android:textSize="14sp" />
 
         <EditText
-            android:id="@+id/et_montoId"
+            android:id="@+id/et_entidadId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
@@ -103,7 +103,7 @@
             android:textSize="14sp" />
 
         <EditText
-            android:id="@+id/editTextTime"
+            android:id="@+id/et_saldoInicialAC"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"

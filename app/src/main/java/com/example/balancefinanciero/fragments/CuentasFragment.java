@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
@@ -129,10 +130,9 @@ public class CuentasFragment extends Fragment implements AdapterView.OnItemSelec
         dialog.setContentView(R.layout.add_account_dialog);
 
         //Initializing the views of the dialog.
-        //final EditText entidad = dialog.findViewById(R.id.et_entidadAC);
-        //final EditText monto = dialog.findViewById(R.id.et_saldoInicialAC);
-        //final RadioButton debito= dialog.findViewById(R.id.btn_rDebito);
-       // final RadioButton  credito= dialog.findViewById(R.id.btn_rCredito);
+        final EditText entidad = dialog.findViewById(R.id.et_entidadId);
+        final EditText monto = dialog.findViewById(R.id.et_saldoInicialAC);
+        final EditText detalle = dialog.findViewById(R.id.et_detalle);
         Button guardar = dialog.findViewById(R.id.btn_guardarCuenta);
         Button cancelar = dialog.findViewById(R.id.btn_cancelarAC);
         //obtener una instancia del tiempo "ahora"
