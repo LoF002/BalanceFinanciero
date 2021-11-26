@@ -51,7 +51,7 @@ public class CuentasFragment extends Fragment implements AdapterView.OnItemSelec
 
     ImageButton btn_registrarCuenta;
 
-
+    double dineroCuentas = 0;
 
     //firebase
     DatabaseReference databaseReference;
@@ -183,6 +183,7 @@ public class CuentasFragment extends Fragment implements AdapterView.OnItemSelec
                 double saldoIinicial;
                 try {
                     saldoIinicial = Double.parseDouble(monto.getText().toString());
+                    dineroCuentas = saldoIinicial;
                 }catch (Exception e){
                     saldoIinicial=0;
                 }
@@ -218,6 +219,7 @@ public class CuentasFragment extends Fragment implements AdapterView.OnItemSelec
                     Cuenta cuentaActual=objSnapshot.getValue(Cuenta.class);
                     if(cuentaActual.getIdUsuario().equals( firebaseAuth.getCurrentUser().getUid())) {
                         listaCuentas.add(cuentaActual);
+                        dineroCuentas += cuentaActual.getMonto();
                         contador++;
                     }
 
@@ -268,4 +270,18 @@ public class CuentasFragment extends Fragment implements AdapterView.OnItemSelec
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
-}
+
+    public int getListaCuentasSize(){//tamaño de la lista de cuentas
+        int size;
+        if (listaCuentas == null){
+            size = 0;
+        }else {
+            size = listaCuentas.size();
+        }
+        return size;
+    }//fin del metodo
+
+    public double getDineroCuentas() {
+        return dineroCuentas;
+    }//fin del metodo
+}//fin de la clase

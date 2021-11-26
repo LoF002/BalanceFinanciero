@@ -118,6 +118,7 @@ public class act_principal extends AppCompatActivity implements AdapterView.OnIt
                     loadFragment(registroFragment);
                     return true;
                 case R.id.reportesFragment:
+                    reportesFragment.setValores(String.valueOf(registroFragment.getListaMovimientosSize()),String.valueOf(cuentasFragment.getListaCuentasSize()),registroFragment.getGastosTotales(),registroFragment.getIngresosTotales(),String.valueOf(monederoFragment.getTotalDineroMonedero()), String.valueOf(cuentasFragment.getDineroCuentas()));
                     loadFragment(reportesFragment);
                     return true;
                 case R.id.monederoFragment:

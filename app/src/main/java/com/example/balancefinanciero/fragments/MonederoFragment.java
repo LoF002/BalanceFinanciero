@@ -29,6 +29,7 @@ import java.util.Calendar;
 
 public class MonederoFragment extends Fragment implements AdapterView.OnItemSelectedListener {
 
+    int totalDineroMonedero = 0;
     TextView txt_totalMonedero;
     ImageButton btn_RegistrarMonedero;
     RecyclerView recyclerMonedero;
@@ -165,6 +166,7 @@ public class MonederoFragment extends Fragment implements AdapterView.OnItemSele
         double ingresosActuales = Double.parseDouble(txt_totalMonedero.getText().toString());
 
         txt_totalMonedero.setText(String.valueOf(ingresosActuales+monto));
+        totalDineroMonedero = (int) (ingresosActuales+monto);
 
     }//Fin metodo
 
@@ -177,4 +179,8 @@ public class MonederoFragment extends Fragment implements AdapterView.OnItemSele
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
-}
+
+    public int getTotalDineroMonedero() {
+        return totalDineroMonedero;
+    }
+}// fin de la clase
