@@ -3,10 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Documentos/AndroidRepository/BalanceFinanciero/app/src/main/res/layout/fragment_cuentas.xml" value="0.38697916666666665" />
-        <entry key="..\:/Documentos/AndroidRepository/BalanceFinanciero/app/src/main/res/layout/fragment_monedero.xml" value="0.38697916666666665" />
-        <entry key="..\:/Documentos/AndroidRepository/BalanceFinanciero/app/src/main/res/layout/fragment_registro.xml" value="0.38697916666666665" />
+        <entry key="..\:/AndroidStudioProjects/BalanceFinanciero/app/src/main/res/layout/add_account_dialog.xml" value="0.2" />
+        <entry key="..\:/AndroidStudioProjects/BalanceFinanciero/app/src/main/res/layout/fragment_cuentas.xml" value="0.20416666666666666" />
+        <entry key="..\:/AndroidStudioProjects/BalanceFinanciero/app/src/main/res/layout/fragment_fechas.xml" value="0.20416666666666666" />
+        <entry key="..\:/AndroidStudioProjects/BalanceFinanciero/app/src/main/res/layout/fragment_monedero.xml" value="0.22" />
+        <entry key="..\:/AndroidStudioProjects/BalanceFinanciero/app/src/main/res/layout/fragment_registro.xml" value="0.20416666666666666" />
+        <entry key="..\:/AndroidStudioProjects/BalanceFinanciero/app/src/main/res/layout/fragment_reportes.xml" value="0.20416666666666666" />
+        <entry key="..\:/AndroidStudioProjects/BalanceFinanciero/app/src/main/res/layout/item_list_fecha.xml" value="0.22" />
+        <entry key="..\:/AndroidStudioProjects/BalanceFinanciero/app/src/main/res/layout/item_list_mov.xml" value="0.1" />
+        <entry key="..\:/AndroidStudioProjects/BalanceFinanciero/app/src/main/res/layout/lyt_loading_screen.xml" value="0.20416666666666666" />
+        <entry key="..\:/AndroidStudioProjects/BalanceFinanciero/app/src/main/res/layout/lyt_login.xml" value="0.20416666666666666" />
+        <entry key="..\:/AndroidStudioProjects/BalanceFinanciero/app/src/main/res/layout/lyt_principal.xml" value="0.22" />
+        <entry key="..\:/AndroidStudioProjects/BalanceFinanciero/app/src/main/res/layout/lyt_registro.xml" value="0.20416666666666666" />
+        <entry key="..\:/AndroidStudioProjects/BalanceFinanciero/app/src/main/res/layout/transaction_dialog.xml" value="0.20416666666666666" />
         <entry key="..\:/Documentos/AndroidRepository/BalanceFinanciero/app/src/main/res/layout/lyt_principal.xml" value="0.3836050724637681" />
+        <entry key="..\:/Users/Jean Carlo/Documents/GitHub/BalanceFinanciero/app/src/main/res/layout/fragment_reportes.xml" value="0.38697916666666665" />
         <entry key="..\:/Users/Juan/Documents/GitHub/BalanceFinanciero/app/src/main/res/drawable/rounded2.xml" value="0.2203125" />
         <entry key="..\:/Users/Juan/Documents/GitHub/BalanceFinanciero/app/src/main/res/drawable/rounded_corners.xml" value="0.2203125" />
         <entry key="..\:/Users/Juan/Documents/GitHub/BalanceFinanciero/app/src/main/res/drawable/rounded_disabled.xml" value="0.165234375" />
