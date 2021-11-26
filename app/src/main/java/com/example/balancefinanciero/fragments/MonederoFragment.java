@@ -1,5 +1,6 @@
 package com.example.balancefinanciero.fragments;
 
+import android.app.Dialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,15 +10,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.balancefinanciero.R;
 import com.example.balancefinanciero.modelo.AdaptadorMonedero;
 import com.example.balancefinanciero.modelo.Monedero;
+import com.example.balancefinanciero.modelo.Movimiento;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 
 public class MonederoFragment extends Fragment implements AdapterView.OnItemSelectedListener {
@@ -47,7 +54,7 @@ public class MonederoFragment extends Fragment implements AdapterView.OnItemSele
                              Bundle savedInstanceState) {
         View vista = inflater.inflate(R.layout.fragment_monedero,container,false);
 
-        txt_totalMonedero = vista.findViewById(R.id.txt_totalMonedero);
+        txt_totalMonedero = (TextView) vista.findViewById(R.id.txt_totalMonedero);
 
         listMonedero = new ArrayList<>();
         recyclerMonedero = (RecyclerView) vista.findViewById(R.id.recyclerMonedero);
@@ -63,8 +70,96 @@ public class MonederoFragment extends Fragment implements AdapterView.OnItemSele
     }
 
     private void showDialog(){
+        final Dialog dialog = new Dialog(getContext());//se declara
+        //We have added a title in the custom layout. So let's disable the default title.
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //The user will be able to cancel the dialog bu clicking anywhere outside the dialog.
+        dialog.setCancelable(true);
+        //Mention the name of the layout of your custom dialog.
+        dialog.setContentView(R.layout.monedero_dialog);
 
+        //Initializing the views of the dialog.
+        //final EditText detalle = dialog.findViewById(R.id.et_detalleId);
+        final EditText monto = dialog.findViewById(R.id.et_montoId);//se iguala
+        //inal RadioButton ingreso= dialog.findViewById(R.id.btn_rIngreso);
+        //final RadioButton  gasto= dialog.findViewById(R.id.btn_rGasto);
+        Button guardar = dialog.findViewById(R.id.btn_guardarCuenta);
+        Button cancelar = dialog.findViewById(R.id.btn_cancelarAC);
+
+        //obtener una instancia del tiempo "ahora"
+        Calendar calendario= Calendar.getInstance();// se declara la variable del calendario
+        // obtener el formato deseado
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        //convertir
+        String dia = dateFormat.format(calendario.getTime());
+
+        guardar.setOnClickListener(new View.OnClickListener() {//se le da funcionabilidad al boton
+            @Override
+            public void onClick(View v) {
+                /*String name = nameEt.getText().toString();
+                String age = ageEt.getText().toString();
+                Boolean hasAccepted = termsCb.isChecked();
+                populateInfoTv(name,age,hasAccepted);*/
+                //String detalleTransacion=detalle.getText().toString();
+                double montoTransaccion;
+
+                try {
+                    montoTransaccion = Double.parseDouble(monto.getText().toString());//se obtiene el monton para igualarlo a una variable
+                }catch (Exception e){
+                    montoTransaccion=0;//se iguala a 0 en caso de que el monto sea null o algo diferente a lo esperado
+                }
+                boolean valorIngreso=false;
+                //se corrigen valores negativos
+                /*
+                if (montoTransaccion<0){
+                    montoTransaccion=montoTransaccion*-1;
+                }
+                if(ingreso.isChecked()){
+                    valorIngreso=true;
+                }
+                if(gasto.isChecked()){
+                    valorIngreso=false;
+                    montoTransaccion=montoTransaccion*-1;//convierte en negativo el valor si se trata de un gasto
+                }
+
+                if((ingreso.isChecked()||gasto.isChecked())&&!detalleTransacion.isEmpty()&&montoTransaccion!=0) {
+                    Movimiento nuevoMovimiento = new Movimiento(dia, detalleTransacion, montoTransaccion, valorIngreso);
+                    llenarMovientos(nuevoMovimiento);
+                    actualizarBalance(montoTransaccion);
+                    dialog.dismiss();
+                }else{
+                    Toast.makeText(getContext(),"Faltan datos", Toast.LENGTH_LONG).show();
+                }*/
+            }//Fin del onClick
+        });//fin del set onclick listener
+        cancelar.setOnClickListener(new View.OnClickListener() {//funcion del boton de cancelar
+            @Override
+            public void onClick(View v) {
+
+                dialog.dismiss();
+            }//fin del onClick
+        });//fin del set onclick listener
+
+        dialog.show();
+
+    }//Fin del metodo
+
+    private void llenarMovientos(Monedero monedero) {
+        listMonedero.add(monedero);
     }
+
+    //Actualiza el monto actual de la cuenta
+    private void actualizarBalance(double monto){
+        /*double ingresosActuales = Double.parseDouble(ingresosTotales.getText().toString());
+        double gastosActuales = Double.parseDouble(gastosTotales.getText().toString());
+
+        if(monto<0){
+            gastosTotales.setText(String.valueOf(gastosActuales+monto));
+        }//Fin else
+        else{
+            ingresosTotales.setText(String.valueOf(ingresosActuales+monto));
+        }//Fin else*/
+    }//Fin metodo
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
