@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.balancefinanciero.R;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class AdaptadorMovimientos extends RecyclerView.Adapter<AdaptadorMovimientos.ViewHolderMovimientos> {
@@ -34,7 +35,7 @@ public class AdaptadorMovimientos extends RecyclerView.Adapter<AdaptadorMovimien
     public void onBindViewHolder(@NonNull ViewHolderMovimientos holder, int position) {
         holder.descripcion.setText(listaMomivientos.get(position).getDetalle());
         holder.monto.setText(String.valueOf(listaMomivientos.get(position).getMonto()));
-        holder.fecha.setText(listaMomivientos.get(position).getFecha());
+        holder.fecha.setText(listaMomivientos.get(position).getFechaString());
 
         //Asigna un color al monto dependiendo de su valor
         if(listaMomivientos.get(position).getMonto()<=0){

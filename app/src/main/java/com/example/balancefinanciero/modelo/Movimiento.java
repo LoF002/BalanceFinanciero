@@ -1,27 +1,31 @@
 package com.example.balancefinanciero.modelo;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Movimiento {
 
     //Clase del objeto movimiento  para registrar todos los movimientos del usuario en la pantalla principal
 
-    private String fecha;
-    private String detalle;
+    private Date fecha;
+    private String detalle,idCuenta;
     private double monto;
     private boolean ingreso;
 
-    public Movimiento(String fecha, String detalle, double monto, boolean ingreso) {
+    public Movimiento(Date fecha, String detalle, double monto, boolean ingreso, String  idCuenta) {
         this.fecha = fecha;
         this.detalle = detalle;
         this.monto = monto;
         this.ingreso = ingreso;
+        this.idCuenta= idCuenta;
     }
 
 
-    public String getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
@@ -47,5 +51,19 @@ public class Movimiento {
 
     public void setIngreso(boolean ingreso) {
         this.ingreso = ingreso;
+    }
+
+    public String getFechaString(){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm");
+        String dia = dateFormat.format(this.fecha);
+        return dia;
+    }
+
+    public String getIdCuenta() {
+        return idCuenta;
+    }
+
+    public void setIdCuenta(String idCuenta) {
+        this.idCuenta = idCuenta;
     }
 }

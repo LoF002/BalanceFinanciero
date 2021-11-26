@@ -42,7 +42,7 @@
             android:textSize="14sp" />
 
         <EditText
-            android:id="@+id/et_entidadId"
+            android:id="@+id/et_entidadCuenta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
@@ -50,7 +50,7 @@
             android:ems="10"
             android:fontFamily="@font/segoe_ui"
             android:hint="Bac San Jose"
-            android:inputType="numberDecimal" />
+             />
 
         <TextView
             android:id="@+id/txtDetalle"
@@ -63,7 +63,7 @@
             android:textSize="14sp" />
 
         <EditText
-            android:id="@+id/et_detalle"
+            android:id="@+id/et_detalleCuenta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
@@ -84,7 +84,7 @@
             android:textSize="14sp" />
 
         <Spinner
-            android:id="@+id/spinner"
+            android:id="@+id/spinner_moneda"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -103,7 +103,7 @@
             android:textSize="14sp" />
 
         <EditText
-            android:id="@+id/et_saldoInicialAC"
+            android:id="@+id/et_saldoInicialCuenta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"

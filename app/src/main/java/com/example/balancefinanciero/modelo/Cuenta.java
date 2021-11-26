@@ -6,15 +6,16 @@ public class Cuenta {
 
     //clase del objeto cuenta que sera usado para registrar las cuentas del usuario
 
-    String idCuenta,idUsuario, nombre;
+    String idCuenta,idUsuario, nombre, detalle;
     boolean esEncolones;
     double monto;
     ArrayList<Movimiento> listaMovientos;
 
-    public Cuenta(String idCuenta, String idUsuario, String nombre, boolean esEncolones, double monto) {
+    public Cuenta(String idCuenta, String idUsuario, String nombre,String detalle, boolean esEncolones, double monto) {
         this.idCuenta = idCuenta;
         this.idUsuario = idUsuario;
         this.nombre = nombre;
+        this.detalle=detalle;
         this.esEncolones = esEncolones;
         this.monto = monto;
     }
@@ -54,6 +55,14 @@ public class Cuenta {
         return nombre;
     }
 
+    public String getDetalle() {
+        return detalle;
+    }
+
+    public void setDetalle(String detalle) {
+        this.detalle = detalle;
+    }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -73,4 +82,5 @@ public class Cuenta {
     public void setListaMovientos(ArrayList<Movimiento> listaMovientos) {
         this.listaMovientos = listaMovientos;
     }
+
 }

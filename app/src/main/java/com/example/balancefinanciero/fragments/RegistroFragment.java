@@ -14,10 +14,12 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.balancefinanciero.modelo.AdaptadorMovimientos;
@@ -27,6 +29,7 @@ import com.example.balancefinanciero.R;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 
 public class RegistroFragment extends Fragment implements AdapterView.OnItemSelectedListener {
@@ -40,6 +43,9 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
     RecyclerView recyclerMomivientos;
 
     ImageButton btn_registrarMovimiento;
+
+    DatePicker datePicker;
+    TimePicker timePicker;
 
 
 
@@ -103,8 +109,22 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
         //Mention the name of the layout of your custom dialog.
         dialog.setContentView(R.layout.transaction_dialog);
 
+        this.datePicker=dialog.findViewById(R.id.datePicker1);
+        Toast.makeText(getContext(), "anio a guardar "+datePicker.getYear(), Toast.LENGTH_SHORT).show();
+
+        this.timePicker=dialog.findViewById(R.id.timePicker1);
+
+
+        Calendar calendario= Calendar.getInstance();// se declara la variable del calendario
+
+
+        //this.timePicker.setHour(calendario.getTime().getHours());
+       // this.timePicker.setMinute(calendario.getTime().getMinutes());
+
+
+
         //Initializing the views of the dialog.
-        final EditText detalle = dialog.findViewById(R.id.et_detalle);
+        final EditText detalle = dialog.findViewById(R.id.et_detalleCuenta);
         final EditText monto = dialog.findViewById(R.id.et_montoId);//se iguala
         final Button ingreso= dialog.findViewById(R.id.btn_Ingreso);
         final Button  gasto= dialog.findViewById(R.id.btn_gasto);
@@ -112,11 +132,14 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
         Button cancelar = dialog.findViewById(R.id.btn_cancelarAC);
 
         //obtener una instancia del tiempo "ahora"
-        Calendar calendario= Calendar.getInstance();// se declara la variable del calendario
+        //Calendar calendario= Calendar.getInstance();// se declara la variable del calendario
+        //TimeZone miZonaHorario=new SimpleTimeZone(-6,"CR");
+        //calendario.setTimeZone(miZonaHorario);
         // obtener el formato deseado
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
         //convertir
         String dia = dateFormat.format(calendario.getTime());
+
 
         guardar.setOnClickListener(new View.OnClickListener() {//se le da funcionabilidad al boton
             @Override
@@ -162,7 +185,14 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
 
                 valorIngreso=true;
                 if( valorIngreso && !detalleTransacion.isEmpty()&&montoTransaccion != 0) {
-                    Movimiento nuevoMovimiento = new Movimiento(dia, detalleTransacion, montoTransaccion, valorIngreso);
+
+                    Calendar calendar = Calendar.getInstance();
+                    //int year, int month, int date, int hourOfDay, int minute
+                    calendar.set(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth(), timePicker.getHour(), timePicker.getMinute());
+                    Date diaRegistro = calendar.getTime();
+
+
+                    Movimiento nuevoMovimiento = new Movimiento(diaRegistro, detalleTransacion, montoTransaccion, valorIngreso,"Bcr");
                     llenarMovientos(nuevoMovimiento);
                     actualizarBalance(montoTransaccion);
                     dialog.dismiss();

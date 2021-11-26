@@ -1,12 +1,9 @@
 package com.example.balancefinanciero.fragments;
 
-import android.Manifest;
 import android.app.Dialog;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,19 +13,33 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.balancefinanciero.act_principal;
 import com.example.balancefinanciero.modelo.AdaptadorCuentas;
 import com.example.balancefinanciero.modelo.Cuenta;
 import com.example.balancefinanciero.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.UUID;
 
 public class CuentasFragment extends Fragment implements AdapterView.OnItemSelectedListener{
 
@@ -41,6 +52,14 @@ public class CuentasFragment extends Fragment implements AdapterView.OnItemSelec
     RecyclerView recyclerCuentas;
 
     ImageButton btn_registrarCuenta;
+
+
+
+    //firebase
+    DatabaseReference databaseReference;
+    FirebaseAuth firebaseAuth;
+    FirebaseUser user;
+
 
     public CuentasFragment() {
         // Required empty public constructor
@@ -57,18 +76,18 @@ public class CuentasFragment extends Fragment implements AdapterView.OnItemSelec
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View vista = inflater.inflate(R.layout.fragment_cuentas, container, false);
+        inicializarDatabase();
 
         //codigo para camara y foto perfil
-        btnCamara = vista.findViewById(R.id.btn_cambiarFoto);
-        fotoPerfil = vista.findViewById(R.id.imgProfile);
-        CapturarFoto();
+        //btnCamara = vista.findViewById(R.id.btn_cambiarFoto);
+        //fotoPerfil = vista.findViewById(R.id.imgProfile);
+
 
         //codigo para usar recycler personalizado
         listaCuentas=new ArrayList<>();
-        recyclerCuentas= (RecyclerView) vista.findViewById(R.id.recyclerCuentas);
+        recyclerCuentas= (RecyclerView) vista.findViewById(R.id.reclyclerCuentas);
         recyclerCuentas.setLayoutManager(new LinearLayoutManager(getContext()));
-        AdaptadorCuentas adapter=new AdaptadorCuentas(listaCuentas);
-        recyclerCuentas.setAdapter(adapter);
+        filtrarCuentas();
         //fin codigo recycler
 
         //Codigo para actuallizar cuentas
@@ -78,6 +97,13 @@ public class CuentasFragment extends Fragment implements AdapterView.OnItemSelec
         return vista;
     }//Fin onCreateView
 
+    private void inicializarDatabase() {
+        FirebaseApp.initializeApp(getContext());
+        firebaseAuth=FirebaseAuth.getInstance();
+        databaseReference= FirebaseDatabase.getInstance().getReference();
+    }//Fin de inicializarDatabase
+
+/*
     private void CapturarFoto() {
         //verifica los permisos y los solicitan si no estan activados
         if(ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA)!= PackageManager.PERMISSION_GRANTED){
@@ -96,7 +122,8 @@ public class CuentasFragment extends Fragment implements AdapterView.OnItemSelec
             }
         });
     }//fin del metodo
-
+/*
+ */
     /*
     private void lanzarCamara() {
         Intent intentC=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -132,9 +159,12 @@ public class CuentasFragment extends Fragment implements AdapterView.OnItemSelec
         dialog.setContentView(R.layout.add_account_dialog);
 
         //Initializing the views of the dialog.
-        final EditText entidad = dialog.findViewById(R.id.et_entidadId);
-        final EditText monto = dialog.findViewById(R.id.et_saldoInicialAC);
-        final EditText detalle = dialog.findViewById(R.id.et_detalle);
+        final EditText entidad = dialog.findViewById(R.id.et_entidadCuenta);
+        final EditText monto = dialog.findViewById(R.id.et_saldoInicialCuenta);
+        final EditText detalle = dialog.findViewById(R.id.et_detalleCuenta);
+        final Spinner spinnerCuenta= dialog.findViewById(R.id.spinner_moneda);
+
+
         Button guardar = dialog.findViewById(R.id.btn_guardarCuenta);
         Button cancelar = dialog.findViewById(R.id.btn_cancelarAC);
 
@@ -148,44 +178,20 @@ public class CuentasFragment extends Fragment implements AdapterView.OnItemSelec
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*String name = nameEt.getText().toString();
-                String age = ageEt.getText().toString();
-                Boolean hasAccepted = termsCb.isChecked();
-                populateInfoTv(name,age,hasAccepted);*/
+
                String entidadCuenta = entidad.getText().toString();
-                double saldoCuenta = 0;
-                String datalle = "";
+                String detalleCuenta = detalle.getText().toString();
 
+                double saldoIinicial;
                 try {
-                    saldoCuenta = Double.parseDouble(monto.getText().toString());
+                    saldoIinicial = Double.parseDouble(monto.getText().toString());
                 }catch (Exception e){
-                    saldoCuenta=0;
+                    saldoIinicial=0;
                 }
 
-                //se corrigen valores negativos
-                if (saldoCuenta<0){
-                    saldoCuenta=saldoCuenta*-1;
-                }
-
-                /*
-                if(debito.isChecked()){
-                    tipoCuenta="Débito";
-                }
-                if(credito.isChecked()){
-                    tipoCuenta="Crédito";
-                }
-
-                if((debito.isChecked()||credito.isChecked())&&!entidadCuenta.isEmpty()&&saldoCuenta!=0) {
-                    Cuenta nuevaCuenta = new Cuenta("", "", entidadCuenta, tipoCuenta, true, saldoCuenta);
-                    llenarCuentas(nuevaCuenta);
-                    dialog.dismiss();
-                }else{
-                    Toast.makeText(getContext(),"Faltan datos", Toast.LENGTH_LONG).show();
-                }*/
-
-                if(!entidadCuenta.isEmpty() && saldoCuenta != 0) {
-                    Cuenta nuevaCuenta = new Cuenta("", "", entidadCuenta, true, saldoCuenta);
-                    llenarCuentas(nuevaCuenta);
+                if(!entidadCuenta.isEmpty() && !detalleCuenta.isEmpty()&&saldoIinicial>0) {
+                    Cuenta nuevaCuenta = new Cuenta(UUID.randomUUID().toString(), firebaseAuth.getCurrentUser().getUid(), entidadCuenta, detalleCuenta, true, saldoIinicial);
+                    addCuentas(nuevaCuenta);
                     dialog.dismiss();
                 }else {
                     Toast.makeText(getContext(), "Faltan datos", Toast.LENGTH_LONG).show();
@@ -203,9 +209,57 @@ public class CuentasFragment extends Fragment implements AdapterView.OnItemSelec
         dialog.show();
     }//Fin metodo showDialog
 
-    private void llenarCuentas(Cuenta cuenta){
-        listaCuentas.add(cuenta);
-    }//Fin metodo para agrgar cuentas en un array
+    public void filtrarCuentas(){
+
+        databaseReference.child("Cuenta").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                listaCuentas.clear();
+                int contador=0;
+                for(DataSnapshot objSnapshot: snapshot.getChildren()){
+                    Cuenta cuentaActual=objSnapshot.getValue(Cuenta.class);
+                    if(cuentaActual.getIdUsuario().equals( firebaseAuth.getCurrentUser().getUid())) {
+                        listaCuentas.add(cuentaActual);
+                        contador++;
+                    }
+
+                }
+                Toast.makeText(getContext(), "Cuentas encontradas "+contador, Toast.LENGTH_SHORT).show();
+                AdaptadorCuentas adapter=new AdaptadorCuentas(listaCuentas);
+                recyclerCuentas.setAdapter(adapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void addCuentas(Cuenta cuenta){
+
+
+        databaseReference.child("Cuenta").child(cuenta.getIdCuenta()).setValue(cuenta)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                           @Override
+                                           public void onComplete(@NonNull Task<Void> task) {
+                                               if (task.isSuccessful()) {
+                                                   Toast.makeText(getContext(), "Cuenta agregada a: "+firebaseAuth.getCurrentUser().getDisplayName(), Toast.LENGTH_SHORT).show();
+
+                                               }else{
+                                                   try {
+                                                       throw task.getException();
+                                                   } catch(Exception e) {
+                                                       Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                                                   }//Fin del catch
+                                               }//fin del else
+                                           }//Fin del onComplete
+                                       }
+
+                );
+        filtrarCuentas();
+
+    }//Fin metodo para agregar cuentas en un array
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

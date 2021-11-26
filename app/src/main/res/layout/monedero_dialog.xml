@@ -86,7 +86,7 @@
             android:textSize="14sp" />
 
         <EditText
-            android:id="@+id/et_detalle"
+            android:id="@+id/et_detalleCuenta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 

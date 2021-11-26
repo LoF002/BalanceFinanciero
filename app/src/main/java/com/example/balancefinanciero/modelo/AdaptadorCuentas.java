@@ -26,20 +26,26 @@ public class AdaptadorCuentas extends RecyclerView.Adapter<AdaptadorCuentas.View
     @NonNull
     @Override
     public AdaptadorCuentas.ViewHolderCuentas onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View vista = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_mov, null, false);
+        View vista = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_cuentas, null, false);
         return new ViewHolderCuentas(vista);
     }//Fin del onCreateViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderCuentas holder, int position) {
-        holder.entidad.setText(listaCuentas.get(position).getNombre());
-        holder.monto.setText(String.valueOf(listaCuentas.get(position).getMonto()));
+        holder.titulo.setText(listaCuentas.get(position).getNombre());
+        holder.detalle.setText(listaCuentas.get(position).getDetalle());
+        if(listaCuentas.get(position).isEsEncolones()) {
+            holder.saldo.setText("₡ "+String.valueOf(listaCuentas.get(position).getMonto()));
+        }else{
+            holder.saldo.setText("$ "+String.valueOf(listaCuentas.get(position).getMonto()));
+        }
 
         //Asigna un color al monto dependiendo de su valor
-        if(listaCuentas.get(position).getMonto()<=0){
-            holder.monto.setTextColor(Color.parseColor("#DB1319"));
+        if(listaCuentas.get(position).getMonto()>0){
+            holder.saldo.setTextColor(Color.parseColor("#218F3E"));
+
         }else{
-            holder.monto.setTextColor(Color.parseColor("#218F3E"));
+            holder.saldo.setTextColor(Color.parseColor("#DB1319"));
         }//Fin del else
     }//Fin onBindViewHolder
 
@@ -51,14 +57,14 @@ public class AdaptadorCuentas extends RecyclerView.Adapter<AdaptadorCuentas.View
 
     public class ViewHolderCuentas extends RecyclerView.ViewHolder{
 
-        TextView entidad, monto;
-        ImageView icono;
+        TextView titulo, detalle, saldo;
+
 
         public ViewHolderCuentas(@NonNull View itemView) {
             super(itemView);
-            entidad = (TextView) itemView.findViewById(R.id.txt_descripcionId);
-            monto= (TextView) itemView.findViewById(R.id.txt_fechaId);
-            icono= (ImageView) itemView.findViewById(R.id.img_imagenId);
+            titulo = (TextView) itemView.findViewById(R.id.txt_Titulo);
+            saldo= (TextView) itemView.findViewById(R.id.txt_Monto);
+            detalle= (TextView) itemView.findViewById(R.id.txt_Detalle);
         }//Fin ViewHolderCuentas
     }//Fin clase ViewHolderCuentas
 

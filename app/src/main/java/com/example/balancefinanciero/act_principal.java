@@ -27,6 +27,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.UUID;
 
 public class act_principal extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -58,7 +60,7 @@ public class act_principal extends AppCompatActivity implements AdapterView.OnIt
         loadFragment(registroFragment);
 
 
-        pruebaDatos();
+        //pruebaDatos();
 
     }//Fin onCreate
 
@@ -67,11 +69,13 @@ public class act_principal extends AppCompatActivity implements AdapterView.OnIt
         firebaseAuth=FirebaseAuth.getInstance();
         databaseReference= FirebaseDatabase.getInstance().getReference();
     }//Fin de inicializarDatabase
-
+/*
     public void pruebaDatos(){//Prueba a registrar un movimineto en la BD segun el usuario que haya iniciado sesion
         user=firebaseAuth.getCurrentUser();
         Cuenta nuevaCuenta=new Cuenta(UUID.randomUUID().toString(),user.getUid(),"BCR",true, 500000);
-        Movimiento nuevoMov=new Movimiento("10-15-2021","Ropa", 20000, false);
+        Calendar calendario= Calendar.getInstance();// se declara la variable del calendario
+        Date date=calendario.getTime();
+        Movimiento nuevoMov=new Movimiento(date,"Ropa", 20000, false, "sumadre");
         ArrayList<Movimiento> listaPrueba=new ArrayList<>();
         listaPrueba.add(nuevoMov);
         nuevaCuenta.setListaMovientos(listaPrueba);
@@ -94,6 +98,10 @@ public class act_principal extends AppCompatActivity implements AdapterView.OnIt
 
         );
     }// fin de pruebaDatos
+
+ */
+
+
 
     //Metodo mOnNavigationItemSelectedListener el cual se encarga de cambiar la vista dependiendo de lo seleccionado
     private final BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {

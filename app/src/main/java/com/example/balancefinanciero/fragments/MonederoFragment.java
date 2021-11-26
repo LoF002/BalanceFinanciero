@@ -21,7 +21,6 @@ import android.widget.Toast;
 import com.example.balancefinanciero.R;
 import com.example.balancefinanciero.modelo.AdaptadorMonedero;
 import com.example.balancefinanciero.modelo.Monedero;
-import com.example.balancefinanciero.modelo.Movimiento;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -80,7 +79,7 @@ public class MonederoFragment extends Fragment implements AdapterView.OnItemSele
         dialog.setContentView(R.layout.monedero_dialog);
 
         //Initializing the views of the dialog.
-        final EditText detalle = dialog.findViewById(R.id.et_detalle);
+        final EditText detalle = dialog.findViewById(R.id.et_detalleCuenta);
         final EditText monto = dialog.findViewById(R.id.et_montoId);//se iguala
         final EditText fecha = dialog.findViewById(R.id.et_fechaM);
         Button guardar = dialog.findViewById(R.id.btn_guardarCuenta);
