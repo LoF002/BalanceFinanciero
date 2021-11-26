@@ -3,6 +3,7 @@ package com.example.balancefinanciero.fragments;
 import android.app.Dialog;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,9 +23,19 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.balancefinanciero.modelo.AdaptadorCuentas;
 import com.example.balancefinanciero.modelo.AdaptadorMovimientos;
+import com.example.balancefinanciero.modelo.Cuenta;
 import com.example.balancefinanciero.modelo.Movimiento;
 import com.example.balancefinanciero.R;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -39,6 +50,7 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
     TextView ingresosTotales, gastosTotales;
 
     ArrayList<Movimiento> listaMovimientos;
+    ArrayList<Cuenta> listaTempCuentas;
 
     RecyclerView recyclerMomivientos;
 
@@ -46,6 +58,11 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
 
     DatePicker datePicker;
     TimePicker timePicker;
+
+    //variables de firebase
+    DatabaseReference databaseReference;
+    FirebaseAuth firebaseAuth;
+    FirebaseUser user;
 
 
 
@@ -63,6 +80,10 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View vista = inflater.inflate(R.layout.fragment_registro, container, false);
+
+        inicializarDatabase();
+        listaTempCuentas=new ArrayList<>();
+        getCuentas();
 
         //Spinner dias
 
@@ -100,6 +121,13 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
         return vista;//se devuelve la vista a usar
     }//fin del oncreateView
 
+
+    private void inicializarDatabase() {
+        FirebaseApp.initializeApp(getContext());
+        firebaseAuth=FirebaseAuth.getInstance();
+        databaseReference= FirebaseDatabase.getInstance().getReference();
+    }//Fin de inicializarDatabase
+
     private void showDialog() {
         final Dialog dialog = new Dialog(getContext());//se declara
         //We have added a title in the custom layout. So let's disable the default title.
@@ -110,7 +138,7 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
         dialog.setContentView(R.layout.transaction_dialog);
 
         this.datePicker=dialog.findViewById(R.id.datePicker1);
-        Toast.makeText(getContext(), "anio a guardar "+datePicker.getYear(), Toast.LENGTH_SHORT).show();
+
 
         this.timePicker=dialog.findViewById(R.id.timePicker1);
 
@@ -128,8 +156,10 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
         final EditText monto = dialog.findViewById(R.id.et_montoId);//se iguala
         final Button ingreso= dialog.findViewById(R.id.btn_Ingreso);
         final Button  gasto= dialog.findViewById(R.id.btn_gasto);
+        final Spinner listaCuentas=dialog.findViewById(R.id.spinner_Cuentas);
         Button guardar = dialog.findViewById(R.id.btn_guardarCuenta);
         Button cancelar = dialog.findViewById(R.id.btn_cancelarAC);
+        actualizarSpinnerCuenta(listaCuentas);
 
         //obtener una instancia del tiempo "ahora"
         //Calendar calendario= Calendar.getInstance();// se declara la variable del calendario
@@ -193,7 +223,7 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
 
 
                     Movimiento nuevoMovimiento = new Movimiento(diaRegistro, detalleTransacion, montoTransaccion, valorIngreso,"Bcr");
-                    llenarMovientos(nuevoMovimiento);
+                    addMovientos(nuevoMovimiento);
                     actualizarBalance(montoTransaccion);
                     dialog.dismiss();
                 }else{
@@ -213,8 +243,50 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
         dialog.show();
     }//Fin del dialog
 
-    private void llenarMovientos(Movimiento movimiento) {
+    private void addMovientos(Movimiento movimiento) {
         listaMovimientos.add(movimiento);
+    }
+
+    private void getCuentas(){
+        databaseReference.child("Cuenta").addValueEventListener(new ValueEventListener() {
+                                                                    @Override
+                                                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                                        listaTempCuentas.clear();
+
+                                                                        for(DataSnapshot objSnapshot: snapshot.getChildren()){
+                                                                            Cuenta cuentaActual=objSnapshot.getValue(Cuenta.class);
+                                                                            if(cuentaActual.getIdUsuario().equals( firebaseAuth.getCurrentUser().getUid())) {
+                                                                                listaTempCuentas.add(cuentaActual);
+                                                                            }
+
+                                                                        }
+
+
+                                                                    }
+
+                                                                    @Override
+                                                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                                                    }
+                                                                });
+    }
+
+    private String[] getNombreCuentas(ArrayList<Cuenta> listaCuentas){
+
+        String[] nombreCuentas= new String[listaCuentas.size()];
+
+        for(int i=0; i<listaCuentas.size();i++){
+            nombreCuentas[i]=listaCuentas.get(i).getNombre();
+        }
+
+        return nombreCuentas;
+    }
+    private void actualizarSpinnerCuenta(Spinner spin){
+
+        String[] nombreCuentas=getNombreCuentas(listaTempCuentas);
+        ArrayAdapter ad = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, nombreCuentas);
+        ad.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        spin.setAdapter(ad);
     }
 
     //Actualiza el monto actual de la cuenta

@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -21,7 +20,6 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.balancefinanciero.act_principal;
 import com.example.balancefinanciero.modelo.AdaptadorCuentas;
 import com.example.balancefinanciero.modelo.Cuenta;
 import com.example.balancefinanciero.R;
@@ -162,7 +160,7 @@ public class CuentasFragment extends Fragment implements AdapterView.OnItemSelec
         final EditText entidad = dialog.findViewById(R.id.et_entidadCuenta);
         final EditText monto = dialog.findViewById(R.id.et_saldoInicialCuenta);
         final EditText detalle = dialog.findViewById(R.id.et_detalleCuenta);
-        final Spinner spinnerCuenta= dialog.findViewById(R.id.spinner_moneda);
+        final Spinner spinnerCuenta= dialog.findViewById(R.id.spinner_Cuentas);
 
 
         Button guardar = dialog.findViewById(R.id.btn_guardarCuenta);
