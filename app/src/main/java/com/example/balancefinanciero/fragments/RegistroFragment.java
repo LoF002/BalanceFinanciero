@@ -136,10 +136,10 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
                 boolean valorIngreso=false;
 
                 //se corrigen valores negativos
-
                 if (montoTransaccion<0){
                     montoTransaccion=montoTransaccion*-1;
                 }
+
                 /*
                 if(ingreso.isChecked()){
                     valorIngreso=true;

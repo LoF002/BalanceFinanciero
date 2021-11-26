@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.balancefinanciero.modelo.AdaptadorCuentas;
 import com.example.balancefinanciero.modelo.Cuenta;
@@ -121,6 +122,7 @@ public class CuentasFragment extends Fragment implements AdapterView.OnItemSelec
      */
 
     private void showDialog() {
+
         final Dialog dialog = new Dialog(getContext());
         //We have added a title in the custom layout. So let's disable the default title.
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -135,6 +137,7 @@ public class CuentasFragment extends Fragment implements AdapterView.OnItemSelec
         final EditText detalle = dialog.findViewById(R.id.et_detalle);
         Button guardar = dialog.findViewById(R.id.btn_guardarCuenta);
         Button cancelar = dialog.findViewById(R.id.btn_cancelarAC);
+
         //obtener una instancia del tiempo "ahora"
         Calendar calendario= Calendar.getInstance();
         // obtener el formato deseado
@@ -149,19 +152,22 @@ public class CuentasFragment extends Fragment implements AdapterView.OnItemSelec
                 String age = ageEt.getText().toString();
                 Boolean hasAccepted = termsCb.isChecked();
                 populateInfoTv(name,age,hasAccepted);*/
-               // String entidadCuenta = entidad.getText().toString();
+               String entidadCuenta = entidad.getText().toString();
                 double saldoCuenta = 0;
-                String tipoCuenta = "";
+                String datalle = "";
 
-               /* try {
+                try {
                     saldoCuenta = Double.parseDouble(monto.getText().toString());
                 }catch (Exception e){
                     saldoCuenta=0;
                 }
+
                 //se corrigen valores negativos
                 if (saldoCuenta<0){
                     saldoCuenta=saldoCuenta*-1;
                 }
+
+                /*
                 if(debito.isChecked()){
                     tipoCuenta="Débito";
                 }
@@ -176,6 +182,14 @@ public class CuentasFragment extends Fragment implements AdapterView.OnItemSelec
                 }else{
                     Toast.makeText(getContext(),"Faltan datos", Toast.LENGTH_LONG).show();
                 }*/
+
+                if(!entidadCuenta.isEmpty() && saldoCuenta != 0) {
+                    Cuenta nuevaCuenta = new Cuenta("", "", entidadCuenta, true, saldoCuenta);
+                    llenarCuentas(nuevaCuenta);
+                    dialog.dismiss();
+                }else {
+                    Toast.makeText(getContext(), "Faltan datos", Toast.LENGTH_LONG).show();
+                }
             }//Fin del onClick
         });
         cancelar.setOnClickListener(new View.OnClickListener() {

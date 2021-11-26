@@ -33,7 +33,6 @@ public class AdaptadorCuentas extends RecyclerView.Adapter<AdaptadorCuentas.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolderCuentas holder, int position) {
         holder.entidad.setText(listaCuentas.get(position).getNombre());
-        holder.tipo.setText(listaCuentas.get(position).getTipo());
         holder.monto.setText(String.valueOf(listaCuentas.get(position).getMonto()));
 
         //Asigna un color al monto dependiendo de su valor
@@ -52,13 +51,12 @@ public class AdaptadorCuentas extends RecyclerView.Adapter<AdaptadorCuentas.View
 
     public class ViewHolderCuentas extends RecyclerView.ViewHolder{
 
-        TextView entidad, tipo, monto;
+        TextView entidad, monto;
         ImageView icono;
 
         public ViewHolderCuentas(@NonNull View itemView) {
             super(itemView);
             entidad = (TextView) itemView.findViewById(R.id.txt_descripcionId);
-            tipo= (TextView) itemView.findViewById(R.id.txt_montoId);
             monto= (TextView) itemView.findViewById(R.id.txt_fechaId);
             icono= (ImageView) itemView.findViewById(R.id.img_imagenId);
         }//Fin ViewHolderCuentas
