@@ -67,7 +67,7 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
         spinnerDias.setOnItemSelectedListener(this);
         //Fin Spinner dias
 
-        ingresosTotales = (TextView) vista.findViewById(R.id.txt_totalIngresos);
+        ingresosTotales = (TextView) vista.findViewById(R.id.txt_totalIngresosGlobales);
         gastosTotales = (TextView) vista.findViewById(R.id.txt_totalGastos);
 
         //Spinner meses
