@@ -59,7 +59,7 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
     DatePicker datePicker;
     TimePicker timePicker;
 
-<<<<<<< HEAD
+
             //variables de firebase
             DatabaseReference databaseReference;
     FirebaseAuth firebaseAuth;
@@ -67,8 +67,7 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
 
 
 
-=======
-        >>>>>>> bcdbd1f57b0a83256fe6a1531e097e8b03d1948f
+
     public RegistroFragment(){
         // Required empty public constructor
     }
