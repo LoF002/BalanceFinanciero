@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -22,11 +23,20 @@
             android:textColor="@color/celeste_primario"
             android:textSize="20dp" />
 
-        <ListView
-            android:id="@+id/listaAPI"
+        <ImageView
+            android:id="@+id/imgDog"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            app:srcCompat="@android:drawable/ic_menu_gallery" />
+
+        <Button
+            android:id="@+id/btnGenerar"
             android:layout_width="wrap_content"
-            android:layout_height="350dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp" />
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="160dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="Generar" />
+
     </LinearLayout>
 </FrameLayout>
