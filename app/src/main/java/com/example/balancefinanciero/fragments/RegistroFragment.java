@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.balancefinanciero.modelo.AdaptadorMovimientos;
 import com.example.balancefinanciero.modelo.Movimiento;
@@ -103,10 +104,10 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
         dialog.setContentView(R.layout.transaction_dialog);
 
         //Initializing the views of the dialog.
-        //final EditText detalle = dialog.findViewById(R.id.et_detalleId);
+        final EditText detalle = dialog.findViewById(R.id.et_detalle);
         final EditText monto = dialog.findViewById(R.id.et_montoId);//se iguala
-        //inal RadioButton ingreso= dialog.findViewById(R.id.btn_rIngreso);
-        //final RadioButton  gasto= dialog.findViewById(R.id.btn_rGasto);
+        final Button ingreso= dialog.findViewById(R.id.btn_Ingreso);
+        final Button  gasto= dialog.findViewById(R.id.btn_gasto);
         Button guardar = dialog.findViewById(R.id.btn_guardarCuenta);
         Button cancelar = dialog.findViewById(R.id.btn_cancelarAC);
 
@@ -124,7 +125,7 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
                 String age = ageEt.getText().toString();
                 Boolean hasAccepted = termsCb.isChecked();
                 populateInfoTv(name,age,hasAccepted);*/
-                //String detalleTransacion=detalle.getText().toString();
+                String detalleTransacion=detalle.getText().toString();
                 double montoTransaccion;
 
                 try {
@@ -133,17 +134,21 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
                     montoTransaccion=0;//se iguala a 0 en caso de que el monto sea null o algo diferente a lo esperado
                 }
                 boolean valorIngreso=false;
+
                 //se corrigen valores negativos
-                /*
+
                 if (montoTransaccion<0){
                     montoTransaccion=montoTransaccion*-1;
                 }
+                /*
                 if(ingreso.isChecked()){
                     valorIngreso=true;
                 }
+
+                //convierte en negativo el valor si se trata de un gasto
                 if(gasto.isChecked()){
                     valorIngreso=false;
-                    montoTransaccion=montoTransaccion*-1;//convierte en negativo el valor si se trata de un gasto
+                    montoTransaccion=montoTransaccion*-1;
                 }
 
                 if((ingreso.isChecked()||gasto.isChecked())&&!detalleTransacion.isEmpty()&&montoTransaccion!=0) {
@@ -154,6 +159,17 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
                 }else{
                     Toast.makeText(getContext(),"Faltan datos", Toast.LENGTH_LONG).show();
                 }*/
+
+                valorIngreso=true;
+                if( valorIngreso && !detalleTransacion.isEmpty()&&montoTransaccion != 0) {
+                    Movimiento nuevoMovimiento = new Movimiento(dia, detalleTransacion, montoTransaccion, valorIngreso);
+                    llenarMovientos(nuevoMovimiento);
+                    actualizarBalance(montoTransaccion);
+                    dialog.dismiss();
+                }else{
+                    Toast.makeText(getContext(),"Faltan datos", Toast.LENGTH_LONG).show();
+                }
+
             }//Fin del onClick
         });//fin del set onclick listener
         cancelar.setOnClickListener(new View.OnClickListener() {//funcion del boton de cancelar
