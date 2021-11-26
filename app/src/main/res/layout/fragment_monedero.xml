@@ -32,7 +32,7 @@
                 android:id="@+id/txt_totalMonedero"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
+                android:layout_marginLeft="100dp"
                 android:layout_marginRight="100dp"
                 android:fontFamily="@font/nunito_bold"
                 android:text="0"

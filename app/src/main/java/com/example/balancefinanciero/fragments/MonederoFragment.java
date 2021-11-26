@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.balancefinanciero.R;
 import com.example.balancefinanciero.modelo.AdaptadorMonedero;
@@ -79,10 +80,9 @@ public class MonederoFragment extends Fragment implements AdapterView.OnItemSele
         dialog.setContentView(R.layout.monedero_dialog);
 
         //Initializing the views of the dialog.
-        //final EditText detalle = dialog.findViewById(R.id.et_detalleId);
+        final EditText detalle = dialog.findViewById(R.id.et_detalle);
         final EditText monto = dialog.findViewById(R.id.et_montoId);//se iguala
-        //inal RadioButton ingreso= dialog.findViewById(R.id.btn_rIngreso);
-        //final RadioButton  gasto= dialog.findViewById(R.id.btn_rGasto);
+        final EditText fecha = dialog.findViewById(R.id.et_fechaM);
         Button guardar = dialog.findViewById(R.id.btn_guardarCuenta);
         Button cancelar = dialog.findViewById(R.id.btn_cancelarAC);
 
@@ -100,7 +100,7 @@ public class MonederoFragment extends Fragment implements AdapterView.OnItemSele
                 String age = ageEt.getText().toString();
                 Boolean hasAccepted = termsCb.isChecked();
                 populateInfoTv(name,age,hasAccepted);*/
-                //String detalleTransacion=detalle.getText().toString();
+                String detalleTransacion=detalle.getText().toString();
                 double montoTransaccion;
 
                 try {
@@ -110,10 +110,12 @@ public class MonederoFragment extends Fragment implements AdapterView.OnItemSele
                 }
                 boolean valorIngreso=false;
                 //se corrigen valores negativos
-                /*
+
                 if (montoTransaccion<0){
                     montoTransaccion=montoTransaccion*-1;
                 }
+
+                /*
                 if(ingreso.isChecked()){
                     valorIngreso=true;
                 }
@@ -130,6 +132,17 @@ public class MonederoFragment extends Fragment implements AdapterView.OnItemSele
                 }else{
                     Toast.makeText(getContext(),"Faltan datos", Toast.LENGTH_LONG).show();
                 }*/
+
+                valorIngreso=true;
+                if(valorIngreso && !detalleTransacion.isEmpty() && montoTransaccion !=0) {
+                    Monedero nuevoMonedero = new Monedero(montoTransaccion, detalleTransacion, "10 / sep / 21");
+                    llenarMonedero(nuevoMonedero);
+                    actualizarBalance(montoTransaccion);
+                    dialog.dismiss();
+                }else{
+                    Toast.makeText(getContext(),"Faltan datos", Toast.LENGTH_LONG).show();
+                }
+
             }//Fin del onClick
         });//fin del set onclick listener
         cancelar.setOnClickListener(new View.OnClickListener() {//funcion del boton de cancelar
@@ -144,21 +157,16 @@ public class MonederoFragment extends Fragment implements AdapterView.OnItemSele
 
     }//Fin del metodo
 
-    private void llenarMovientos(Monedero monedero) {
+    private void llenarMonedero(Monedero monedero) {
         listMonedero.add(monedero);
     }
 
     //Actualiza el monto actual de la cuenta
     private void actualizarBalance(double monto){
-        /*double ingresosActuales = Double.parseDouble(ingresosTotales.getText().toString());
-        double gastosActuales = Double.parseDouble(gastosTotales.getText().toString());
+        double ingresosActuales = Double.parseDouble(txt_totalMonedero.getText().toString());
 
-        if(monto<0){
-            gastosTotales.setText(String.valueOf(gastosActuales+monto));
-        }//Fin else
-        else{
-            ingresosTotales.setText(String.valueOf(ingresosActuales+monto));
-        }//Fin else*/
+        txt_totalMonedero.setText(String.valueOf(ingresosActuales+monto));
+
     }//Fin metodo
 
     @Override
