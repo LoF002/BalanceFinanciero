@@ -112,11 +112,11 @@
 
             <Button
                 android:id="@+id/btn_biometricLogin"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:background="@null"
-                android:backgroundTint="@null"
+                android:backgroundTint="@color/blanco"
                 android:fontFamily="@font/segoe_ui"
                 android:text="Ingresar con huella"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
