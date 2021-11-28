@@ -29,7 +29,7 @@ import java.util.concurrent.Executor;
 public class act_login extends AppCompatActivity {
 
     EditText txtCorreo, txtContrasenia;
-    ImageButton btnIngresar, btnRegistrate;
+    Button btnIngresar, btnRegistrate;
     Button btn_biometricLogin;
     TextView txt_msgHuellaDisponibilidad;
 

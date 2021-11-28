@@ -9,7 +9,7 @@ public class RetrofitCliente {
 
     //clase que define la URL base que sera inicializada para utilizar retrofit al consumir una api
 
-    public static final String URL_BASE = "https://dog.ceo/api/breeds/image/";
+    public static final String URL_BASE = "";
     public static Retrofit retrofit;
 
     public static RetrofitAPIService getApiService(){

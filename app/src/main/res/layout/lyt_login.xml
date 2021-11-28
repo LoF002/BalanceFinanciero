@@ -85,13 +85,19 @@
             android:layout_marginRight="50dp"
             android:orientation="horizontal">
 
-            <ImageButton
+            <Button
                 android:id="@+id/btnIngresar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@null"
-                app:srcCompat="@drawable/grupo_58" />
+                android:backgroundTint="@color/azul"
+                android:fontFamily="@font/nunito_bold"
+                android:text="Iniciar Sesión"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textSize="17sp"
+                android:visibility="visible"
+                app:cornerRadius="20dp" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -138,9 +144,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="50dp"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="50dp"
             android:layout_marginRight="50dp"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/textView4"
@@ -153,12 +159,31 @@
                 android:textColor="#006f98"
                 android:textSize="16sp" />
 
-            <ImageButton
-                android:id="@+id/btnRegistrate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                app:srcCompat="@drawable/grupo_59" />
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnRegistrate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/celeste_terciario"
+                android:fontFamily="@font/nunito_bold"
+                android:text="Crear Cuenta"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/azul"
+                android:textSize="17sp"
+                app:cornerRadius="20dp"
+                app:strokeColor="@color/celeste_secundario"
+                app:strokeWidth="2dp" />
+
+        </LinearLayout>
+
     </LinearLayout>
 </LinearLayout>
