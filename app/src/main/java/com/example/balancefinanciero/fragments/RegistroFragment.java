@@ -60,8 +60,8 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
     TimePicker timePicker;
 
 
-            //variables de firebase
-            DatabaseReference databaseReference;
+    //variables de firebase
+    DatabaseReference databaseReference;
     FirebaseAuth firebaseAuth;
     FirebaseUser user;
 
@@ -295,7 +295,7 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
     }
     private void actualizarSpinnerCuenta(Spinner spin){
 
-        String[] nombreCuentas=getNombreCuentas(listaTempCuentas);
+        String[] nombreCuentas=getNombreCuentas(this.listaTempCuentas);
         ArrayAdapter ad = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, nombreCuentas);
         ad.setDropDownViewResource(android.R.layout.simple_spinner_item);
         spin.setAdapter(ad);

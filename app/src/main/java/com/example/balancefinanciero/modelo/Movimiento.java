@@ -20,6 +20,14 @@ public class Movimiento {
         this.idCuenta= idCuenta;
     }
 
+    public Movimiento(){
+        this.fecha = null;
+        this.detalle = "";
+        this.monto = 0;
+        this.ingreso = true;
+        this.idCuenta= "";
+    }
+
 
     public Date getFecha() {
         return fecha;

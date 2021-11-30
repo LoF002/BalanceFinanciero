@@ -24,6 +24,8 @@ public class Cuenta {
         this.idCuenta = "";
         this.idUsuario = "";
         this.nombre = "";
+        this.detalle="";
+        this.esEncolones=true;
         this.monto = 0;
     }
 
