@@ -40,7 +40,7 @@ public class FechasFragment extends Fragment {
 
         View vista = inflater.inflate(R.layout.fragment_fechas,container,false);
 
-        iniciarValores();
+        //iniciarValores();
 
 
         return vista;
