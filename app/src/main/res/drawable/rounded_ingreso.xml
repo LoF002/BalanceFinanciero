@@ -5,6 +5,5 @@
         android:bottomRightRadius="0dip"
         android:topLeftRadius="10dip"
         android:topRightRadius="0dip" />
-    <solid android:color="@color/yellowgreen" />rounded_ingreso.xml
 
 </shape>

@@ -52,7 +52,7 @@ public class AdaptadorMonedero extends RecyclerView.Adapter<AdaptadorMonedero.Vi
 
     public class ViewHolderMonedero extends RecyclerView.ViewHolder {
         TextView detalle,fecha,monto;
-        ImageView icon;
+
 
         //Convierte la informacion a Strings para insertarlos en la vista
         public ViewHolderMonedero(@NonNull View itemView) {
@@ -61,7 +61,7 @@ public class AdaptadorMonedero extends RecyclerView.Adapter<AdaptadorMonedero.Vi
             detalle = (TextView) itemView.findViewById(R.id.txt_descripcionId);
             fecha = (TextView) itemView.findViewById(R.id.txt_fechaId);
             monto = (TextView) itemView.findViewById(R.id.txt_montoId);
-            icon = (ImageView) itemView.findViewById(R.id.img_imagenId);
+
         }//Fin de metodo ViewHolderMonedero
     }//Fin de Clase ViewHolderMonedero
 }//Fin de Clase

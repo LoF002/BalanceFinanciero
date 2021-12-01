@@ -33,6 +33,8 @@ public class AdaptadorMovimientos extends RecyclerView.Adapter<AdaptadorMovimien
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderMovimientos holder, int position) {
+        holder.setIsRecyclable(false);
+
         holder.descripcion.setText(listaMomivientos.get(position).getDetalle());
         holder.monto.setText(String.valueOf(listaMomivientos.get(position).getMonto()));
         holder.fecha.setText(listaMomivientos.get(position).getFechaString());
@@ -62,7 +64,7 @@ public class AdaptadorMovimientos extends RecyclerView.Adapter<AdaptadorMovimien
             descripcion= (TextView) itemView.findViewById(R.id.txt_descripcionId);
             monto= (TextView) itemView.findViewById(R.id.txt_montoId);
             fecha= (TextView) itemView.findViewById(R.id.txt_fechaId);
-            icono= (ImageView) itemView.findViewById(R.id.img_imagenId);
+
 
         }//Fin de ViewHolderMovimientos
     }//Fin de ViewHolderMovimientos

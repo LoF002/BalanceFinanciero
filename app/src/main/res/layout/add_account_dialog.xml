@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
@@ -121,24 +122,26 @@
             <Button
                 android:id="@+id/btn_cancelarAC"
                 android:layout_width="140dp"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:layout_marginHorizontal="10dp"
-                android:background="@drawable/rounded_corners"
+                android:backgroundTint="@color/blanco"
                 android:fontFamily="@font/segoe_ui_bold"
                 android:text="Cancelar"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:textColor="@color/azul" />
+                android:textColor="@color/azul"
+                app:cornerRadius="20dp" />
 
             <Button
                 android:id="@+id/btn_guardarCuenta"
                 android:layout_width="140dp"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:layout_marginHorizontal="10dp"
-                android:background="@drawable/rounded2"
+                android:backgroundTint="@color/azul"
                 android:fontFamily="@font/segoe_ui_bold"
                 android:text="Guardar"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:textColor="@color/blanco" />
+                android:textColor="@color/blanco"
+                app:cornerRadius="20dp" />
         </LinearLayout>
     </LinearLayout>
 

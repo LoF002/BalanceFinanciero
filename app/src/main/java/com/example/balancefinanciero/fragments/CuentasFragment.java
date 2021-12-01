@@ -224,7 +224,7 @@ public class CuentasFragment extends Fragment implements AdapterView.OnItemSelec
                     }
 
                 }
-                Toast.makeText(getContext(), "Cuentas encontradas "+contador, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "Cuentas encontradas "+contador, Toast.LENGTH_SHORT).show();
                 AdaptadorCuentas adapter=new AdaptadorCuentas(listaCuentas);
                 recyclerCuentas.setAdapter(adapter);
             }

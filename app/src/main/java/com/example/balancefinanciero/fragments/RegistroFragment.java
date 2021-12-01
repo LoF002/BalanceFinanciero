@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -51,6 +52,11 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
 
     ArrayList<Movimiento> listaMovimientos;
     ArrayList<Cuenta> listaTempCuentas;
+
+    AdaptadorMovimientos adapter;
+
+    int numeroCuenta;
+    boolean esIngreso=true;
 
     RecyclerView recyclerMomivientos;
 
@@ -122,12 +128,14 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
         listaMovimientos=new ArrayList<>();//declaracion
         recyclerMomivientos = (RecyclerView) vista.findViewById(R.id.recyclerMovimientos);
         recyclerMomivientos.setLayoutManager(new LinearLayoutManager(getContext()));//se asigna el layout
-        AdaptadorMovimientos adapter=new AdaptadorMovimientos(listaMovimientos);//se declara y se inicializa el adapter a usar
-        recyclerMomivientos.setAdapter(adapter);//se asigna el adapter
+        //adapter=new AdaptadorMovimientos(listaMovimientos);// se inicializa el adapter a usar
+        //recyclerMomivientos.setAdapter(adapter);//se asigna el adapter
         //fin codigo recycler
 
         btn_registrarMovimiento = vista.findViewById(R.id.btn_registrarMovimiento);
         btn_registrarMovimiento.setOnClickListener((View)->{showDialog();});//se asing el metodo a usar del boton
+
+        filtrarMovimientos();
 
 
         return vista;//se devuelve la vista a usar
@@ -172,6 +180,33 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
         Button guardar = dialog.findViewById(R.id.btn_guardarCuenta);
         Button cancelar = dialog.findViewById(R.id.btn_cancelarAC);
         actualizarSpinnerCuenta(listaCuentas);
+        listaCuentas.setOnItemSelectedListener(this);
+        ingreso.setOnClickListener(new View.OnClickListener() {
+                                       @Override
+                                       public void onClick(View view) {
+                                           esIngreso=true;
+                                               gasto.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.blanco));
+                                               gasto.setTextColor(ContextCompat.getColor(getContext(), R.color.silver));
+                                               ingreso.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.yellowgreen));
+                                               ingreso.setTextColor(ContextCompat.getColor(getContext(), R.color.blanco));
+
+                                       }
+                                   }
+
+        );
+        gasto.setOnClickListener(new View.OnClickListener() {
+                                       @Override
+                                       public void onClick(View view) {
+                                           esIngreso=false;
+                                               gasto.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.red));
+                                               gasto.setTextColor(ContextCompat.getColor(getContext(), R.color.blanco));
+                                               ingreso.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.blanco));
+                                               ingreso.setTextColor(ContextCompat.getColor(getContext(), R.color.silver));
+
+                                       }
+                                   }
+
+        );
 
         //obtener una instancia del tiempo "ahora"
         //Calendar calendario= Calendar.getInstance();// se declara la variable del calendario
@@ -234,8 +269,8 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
                     Date diaRegistro = calendar.getTime();
 
 
-                    Movimiento nuevoMovimiento = new Movimiento(diaRegistro, detalleTransacion, montoTransaccion, valorIngreso,"Bcr");
-                    addMovientos(nuevoMovimiento);
+                    Movimiento nuevoMovimiento = new Movimiento(diaRegistro, detalleTransacion, montoTransaccion, esIngreso, getCuentaActual().getIdCuenta());
+                    actulizarRegistro(nuevoMovimiento);
                     actualizarBalance(montoTransaccion);
                     dialog.dismiss();
                 }else{
@@ -255,8 +290,13 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
         dialog.show();
     }//Fin del dialog
 
-    private void addMovientos(Movimiento movimiento) {
-        listaMovimientos.add(movimiento);
+    private void actualizarPantalla() {
+        if(recyclerMomivientos.getAdapter()==null) {
+            adapter = new AdaptadorMovimientos(listaMovimientos);//se declara y se inicializa el adapter a usar
+            recyclerMomivientos.setAdapter(adapter);
+        }else{
+            adapter.notifyDataSetChanged();
+        }
     }
 
     private void getCuentas(){
@@ -282,6 +322,25 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
             }
         });
     }
+
+    private Cuenta getCuentaActual(){
+        getCuentas();
+         return listaTempCuentas.get(this.numeroCuenta);
+    }
+
+    private void actulizarRegistro(Movimiento mov){
+        ArrayList<Movimiento> listaM;
+        if(getCuentaActual().getListaMovientos()!=null){
+            listaM=getCuentaActual().getListaMovientos();
+        }else{
+            listaM =new ArrayList<>();
+        }
+
+        listaM.add(mov);
+        databaseReference.child("Cuenta").child(getCuentaActual().getIdCuenta()).child("listaMovientos").setValue(listaM);
+        filtrarMovimientos();
+    }
+
 
     private String[] getNombreCuentas(ArrayList<Cuenta> listaCuentas){
 
@@ -314,9 +373,39 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
         }//Fin else
     }//Fin metodo
 
+    private void filtrarMovimientos(){
+        listaMovimientos.clear();
+
+        databaseReference.child("Cuenta").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot objSnapshot: snapshot.getChildren()){
+                    Cuenta cuentaActual=objSnapshot.getValue(Cuenta.class);
+                    if(cuentaActual.getIdUsuario().equals( firebaseAuth.getCurrentUser().getUid())) {
+                        if(cuentaActual.getListaMovientos()!=null){
+                            for (Movimiento movimiento : cuentaActual.getListaMovientos())
+                            {
+                                listaMovimientos.add(movimiento);
+                            }
+                        }//comprueba que la cuenta tenga movimientos
+                    }//filtra las cuentas del usuario actual
+                    actualizarPantalla();
+                }//fin for DataSnapshot
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+        this.numeroCuenta=position;
     }
 
     @Override
