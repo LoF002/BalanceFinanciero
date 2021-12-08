@@ -85,7 +85,7 @@ public class ReportesFragment extends Fragment {
         numeroTotalIngresos = numeroTotalIngresosTemp;
         numeroDineroEfectivo = numeroDineroEfectivoTemp;
         numeroTotalDineroActual = String.valueOf(Double.parseDouble(numeroTotalIngresos)-Double.parseDouble(numeroGastos)+Double.parseDouble(numeroDineroEfectivo)+Double.parseDouble(dineroCuentas));
-        numeroTotalCuenta = String.valueOf(Double.parseDouble(numeroTotalIngresos)-Double.parseDouble(numeroGastos)+Double.parseDouble(dineroCuentas));
+        numeroTotalCuenta = String.valueOf(Double.parseDouble(numeroTotalIngresos)+Double.parseDouble(numeroGastos)+Double.parseDouble(dineroCuentas));
     }//fin del metodo
 
 
