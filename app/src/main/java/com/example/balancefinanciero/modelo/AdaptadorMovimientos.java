@@ -36,11 +36,15 @@ public class AdaptadorMovimientos extends RecyclerView.Adapter<AdaptadorMovimien
         holder.setIsRecyclable(false);
 
         holder.descripcion.setText(listaMomivientos.get(position).getDetalle());
-        holder.monto.setText(String.valueOf(listaMomivientos.get(position).getMonto()));
+        if(listaMomivientos.get(position).isIngreso()) {
+            holder.monto.setText(String.valueOf(listaMomivientos.get(position).getMonto()));
+        }else{
+            holder.monto.setText(String.valueOf(listaMomivientos.get(position).getMonto()*-1));
+        }
         holder.fecha.setText(listaMomivientos.get(position).getFechaString());
 
         //Asigna un color al monto dependiendo de su valor
-        if(listaMomivientos.get(position).getMonto()<=0){
+        if(!listaMomivientos.get(position).isIngreso()){
             holder.monto.setTextColor(Color.parseColor("#DB1319"));
         }else{
             holder.monto.setTextColor(Color.parseColor("#218F3E"));

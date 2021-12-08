@@ -29,6 +29,7 @@ public class Movimiento {
     }
 
 
+
     public Date getFecha() {
         return fecha;
     }

@@ -57,6 +57,8 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
 
     int numeroCuenta;
     boolean esIngreso=true;
+    double gastosTotalesMovimiento;
+    double ingresosTotalesMovimiento;
 
     RecyclerView recyclerMomivientos;
 
@@ -115,6 +117,8 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
         gastosTotales = (TextView) vista.findViewById(R.id.txt_totalGastos);
 
 
+
+
         //Spinner meses
         spinnerMeses = vista.findViewById(R.id.spinnerMeses);
         ArrayAdapter<CharSequence> adapterSpinnerMeses = ArrayAdapter.createFromResource(getContext(),
@@ -128,6 +132,7 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
         listaMovimientos=new ArrayList<>();//declaracion
         recyclerMomivientos = (RecyclerView) vista.findViewById(R.id.recyclerMovimientos);
         recyclerMomivientos.setLayoutManager(new LinearLayoutManager(getContext()));//se asigna el layout
+        filtrarMovimientos();
         //adapter=new AdaptadorMovimientos(listaMovimientos);// se inicializa el adapter a usar
         //recyclerMomivientos.setAdapter(adapter);//se asigna el adapter
         //fin codigo recycler
@@ -135,7 +140,7 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
         btn_registrarMovimiento = vista.findViewById(R.id.btn_registrarMovimiento);
         btn_registrarMovimiento.setOnClickListener((View)->{showDialog();});//se asing el metodo a usar del boton
 
-        filtrarMovimientos();
+
 
 
         return vista;//se devuelve la vista a usar
@@ -165,9 +170,6 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
 
         Calendar calendario= Calendar.getInstance();// se declara la variable del calendario
 
-
-        //this.timePicker.setHour(calendario.getTime().getHours());
-        // this.timePicker.setMinute(calendario.getTime().getMinutes());
 
 
 
@@ -208,23 +210,14 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
 
         );
 
-        //obtener una instancia del tiempo "ahora"
-        //Calendar calendario= Calendar.getInstance();// se declara la variable del calendario
-        //TimeZone miZonaHorario=new SimpleTimeZone(-6,"CR");
-        //calendario.setTimeZone(miZonaHorario);
-        // obtener el formato deseado
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-        //convertir
-        String dia = dateFormat.format(calendario.getTime());
+
+
 
 
         guardar.setOnClickListener(new View.OnClickListener() {//se le da funcionabilidad al boton
             @Override
             public void onClick(View v) {
-                /*String name = nameEt.getText().toString();
-                String age = ageEt.getText().toString();
-                Boolean hasAccepted = termsCb.isChecked();
-                populateInfoTv(name,age,hasAccepted);*/
+
                 String detalleTransacion=detalle.getText().toString();
                 double montoTransaccion;
 
@@ -233,35 +226,18 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
                 }catch (Exception e){
                     montoTransaccion=0;//se iguala a 0 en caso de que el monto sea null o algo diferente a lo esperado
                 }
-                boolean valorIngreso=false;
+
 
                 //se corrigen valores negativos
                 if (montoTransaccion<0){
                     montoTransaccion=montoTransaccion*-1;
                 }
 
-                /*
-                if(ingreso.isChecked()){
-                    valorIngreso=true;
-                }
 
-                //convierte en negativo el valor si se trata de un gasto
-                if(gasto.isChecked()){
-                    valorIngreso=false;
-                    montoTransaccion=montoTransaccion*-1;
-                }
 
-                if((ingreso.isChecked()||gasto.isChecked())&&!detalleTransacion.isEmpty()&&montoTransaccion!=0) {
-                    Movimiento nuevoMovimiento = new Movimiento(dia, detalleTransacion, montoTransaccion, valorIngreso);
-                    llenarMovientos(nuevoMovimiento);
-                    actualizarBalance(montoTransaccion);
-                    dialog.dismiss();
-                }else{
-                    Toast.makeText(getContext(),"Faltan datos", Toast.LENGTH_LONG).show();
-                }*/
 
-                valorIngreso=true;
-                if( valorIngreso && !detalleTransacion.isEmpty()&&montoTransaccion != 0) {
+
+                if(!detalleTransacion.isEmpty()&&montoTransaccion != 0) {
 
                     Calendar calendar = Calendar.getInstance();
                     //int year, int month, int date, int hourOfDay, int minute
@@ -271,7 +247,6 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
 
                     Movimiento nuevoMovimiento = new Movimiento(diaRegistro, detalleTransacion, montoTransaccion, esIngreso, getCuentaActual().getIdCuenta());
                     actulizarRegistro(nuevoMovimiento);
-                    actualizarBalance(montoTransaccion);
                     dialog.dismiss();
                 }else{
                     Toast.makeText(getContext(),"Faltan datos", Toast.LENGTH_LONG).show();
@@ -290,14 +265,7 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
         dialog.show();
     }//Fin del dialog
 
-    private void actualizarPantalla() {
-        if(recyclerMomivientos.getAdapter()==null) {
-            adapter = new AdaptadorMovimientos(listaMovimientos);//se declara y se inicializa el adapter a usar
-            recyclerMomivientos.setAdapter(adapter);
-        }else{
-            adapter.notifyDataSetChanged();
-        }
-    }
+
 
     private void getCuentas(){
         databaseReference.child("Cuenta").addValueEventListener(new ValueEventListener() {
@@ -361,24 +329,50 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
     }
 
     //Actualiza el monto actual de la cuenta
-    private void actualizarBalance(double monto){
-        double ingresosActuales = Double.parseDouble(ingresosTotales.getText().toString());
-        double gastosActuales = Double.parseDouble(gastosTotales.getText().toString());
 
-        if(monto<0){
-            gastosTotales.setText(String.valueOf(gastosActuales+monto));
-        }//Fin else
-        else{
-            ingresosTotales.setText(String.valueOf(ingresosActuales+monto));
-        }//Fin else
-    }//Fin metodo
 
-    private void filtrarMovimientos(){
-        listaMovimientos.clear();
+    private void actualizarBalances(){
 
         databaseReference.child("Cuenta").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                gastosTotalesMovimiento=0;
+                ingresosTotalesMovimiento=0;
+                for(DataSnapshot objSnapshot: snapshot.getChildren()){
+                    Cuenta cuentaActual=objSnapshot.getValue(Cuenta.class);
+                    if(cuentaActual.getIdUsuario().equals( firebaseAuth.getCurrentUser().getUid())) {
+                        if(cuentaActual.getListaMovientos()!=null){
+                            for (Movimiento movimiento : cuentaActual.getListaMovientos())
+                            {
+                                if(movimiento.isIngreso()){
+                                    ingresosTotalesMovimiento+=movimiento.getMonto();
+                                }else{
+                                    gastosTotalesMovimiento-=movimiento.getMonto();
+                                }
+                            }
+                        }//comprueba que la cuenta tenga movimientos
+                    }//filtra las cuentas del usuario actual
+
+                }//fin for DataSnapshot
+                gastosTotales.setText(String.valueOf(gastosTotalesMovimiento));
+                ingresosTotales.setText(String.valueOf(ingresosTotalesMovimiento));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
+    private void filtrarMovimientos(){
+
+
+        databaseReference.child("Cuenta").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                listaMovimientos.clear();
                 for(DataSnapshot objSnapshot: snapshot.getChildren()){
                     Cuenta cuentaActual=objSnapshot.getValue(Cuenta.class);
                     if(cuentaActual.getIdUsuario().equals( firebaseAuth.getCurrentUser().getUid())) {
@@ -389,10 +383,12 @@ public class RegistroFragment extends Fragment implements AdapterView.OnItemSele
                             }
                         }//comprueba que la cuenta tenga movimientos
                     }//filtra las cuentas del usuario actual
-                    actualizarPantalla();
+
                 }//fin for DataSnapshot
 
-
+                adapter = new AdaptadorMovimientos(listaMovimientos);//se declara y se inicializa el adapter a usar
+                recyclerMomivientos.setAdapter(adapter);
+                actualizarBalances();
             }
 
             @Override

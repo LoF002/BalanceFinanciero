@@ -154,7 +154,7 @@
                 android:layout_weight="1"
                 android:backgroundTint="@color/azul"
                 android:fontFamily="@font/nunito_bold"
-                android:text="Iniciar Sesión"
+                android:text="Registrarse"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textSize="17sp"
                 android:visibility="visible"

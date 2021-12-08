@@ -41,9 +41,6 @@ import java.util.UUID;
 
 public class CuentasFragment extends Fragment implements AdapterView.OnItemSelectedListener{
 
-    Button btnCamara;
-
-    ImageView fotoPerfil;
 
     ArrayList<Cuenta> listaCuentas;
 
@@ -52,6 +49,7 @@ public class CuentasFragment extends Fragment implements AdapterView.OnItemSelec
     ImageButton btn_registrarCuenta;
 
     double dineroCuentas = 0;
+
 
     //firebase
     DatabaseReference databaseReference;
@@ -86,6 +84,7 @@ public class CuentasFragment extends Fragment implements AdapterView.OnItemSelec
         recyclerCuentas= (RecyclerView) vista.findViewById(R.id.reclyclerCuentas);
         recyclerCuentas.setLayoutManager(new LinearLayoutManager(getContext()));
         filtrarCuentas();
+
         //fin codigo recycler
 
         //Codigo para actuallizar cuentas
@@ -214,24 +213,25 @@ public class CuentasFragment extends Fragment implements AdapterView.OnItemSelec
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 listaCuentas.clear();
-                int contador=0;
+
                 for(DataSnapshot objSnapshot: snapshot.getChildren()){
                     Cuenta cuentaActual=objSnapshot.getValue(Cuenta.class);
                     if(cuentaActual.getIdUsuario().equals( firebaseAuth.getCurrentUser().getUid())) {
                         listaCuentas.add(cuentaActual);
                         dineroCuentas += cuentaActual.getMonto();
-                        contador++;
                     }
 
                 }
-                //Toast.makeText(getContext(), "Cuentas encontradas "+contador, Toast.LENGTH_SHORT).show();
+
                 AdaptadorCuentas adapter=new AdaptadorCuentas(listaCuentas);
                 recyclerCuentas.setAdapter(adapter);
+
+
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(getContext(), error.getMessage()+error.getDetails(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -272,13 +272,11 @@ public class CuentasFragment extends Fragment implements AdapterView.OnItemSelec
     }
 
     public int getListaCuentasSize(){//tamaño de la lista de cuentas
-        int size;
-        if (listaCuentas == null){
-            size = 0;
-        }else {
-            size = listaCuentas.size();
+        try{
+            return this.listaCuentas.size();
+        }catch (Exception e){
+            return 0;
         }
-        return size;
     }//fin del metodo
 
     public double getDineroCuentas() {

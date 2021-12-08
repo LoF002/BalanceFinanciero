@@ -33,11 +33,15 @@ public class AdaptadorMonedero extends RecyclerView.Adapter<AdaptadorMonedero.Vi
     @Override
     public void onBindViewHolder(@NonNull ViewHolderMonedero holder, int position) {
         holder.detalle.setText(listaMonedero.get(position).getDetalle());
-        holder.fecha.setText(listaMonedero.get(position).getFecha());
-        holder.monto.setText(String.valueOf(listaMonedero.get(position).getMonto()));
+        holder.fecha.setText(listaMonedero.get(position).getFechaString());
+        if(listaMonedero.get(position).isIngreso()) {
+            holder.monto.setText(String.valueOf(listaMonedero.get(position).getMonto()));
+        }else{
+            holder.monto.setText(String.valueOf(listaMonedero.get(position).getMonto()*-1));
+        }
 
         //Asigna un color al monto dependiendo de su valor
-        if (listaMonedero.get(position).getMonto()>=0){
+        if (listaMonedero.get(position).isIngreso()){
             holder.monto.setTextColor(Color.parseColor("#218F3E"));
         }else{
             holder.monto.setTextColor(Color.parseColor("#DB1319"));

@@ -1,41 +1,33 @@
 {
   "project_info": {
-    "project_number": "829198205206",
-    "project_id": "testbalancefinanciero",
-    "storage_bucket": "testbalancefinanciero.appspot.com"
+    "project_number": "849116575812",
+    "project_id": "bffinaltest",
+    "storage_bucket": "bffinaltest.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:829198205206:android:9a55612351d6c8b67e5037",
+        "mobilesdk_app_id": "1:849116575812:android:3eca91d7ad86891d292411",
         "android_client_info": {
           "package_name": "com.example.balancefinanciero"
         }
       },
       "oauth_client": [
         {
-          "client_id": "829198205206-puobqvlj0tdpgk7uctoehdccgd34md5l.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.balancefinanciero",
-            "certificate_hash": "15bd6cedf163a3b1d36ce5e4c5eb4f52f5d5a091"
-          }
-        },
-        {
-          "client_id": "829198205206-00cvfp45k8r90effs310m8n4h37ibjp9.apps.googleusercontent.com",
+          "client_id": "849116575812-t4dfco1jrgb70unhpohfgji41dnr5hmk.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCY-P43YWUjpit1s_6U3H0hSV8cDh78Vv8"
+          "current_key": "AIzaSyDY2soXJjzJUd-sr2Sp3D4Y559e983nI2c"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "829198205206-00cvfp45k8r90effs310m8n4h37ibjp9.apps.googleusercontent.com",
+              "client_id": "849116575812-t4dfco1jrgb70unhpohfgji41dnr5hmk.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
