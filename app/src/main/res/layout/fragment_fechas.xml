@@ -23,5 +23,12 @@
             android:textColor="@color/celeste_primario"
             android:textSize="20dp" />
 
+        <ExpandableListView
+            android:id="@+id/elvFechas"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"></ExpandableListView>
+
     </LinearLayout>
 </FrameLayout>
