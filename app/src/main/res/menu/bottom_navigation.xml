@@ -3,8 +3,7 @@
     <item
         android:id="@+id/cuentasFragment"
         android:icon="@drawable/cuentas_off"
-        android:title="Cuentas"
-        />
+        android:title="Cuentas" />
     <item
         android:id="@+id/fechasFragment"
         android:icon="@drawable/fechas_off"
